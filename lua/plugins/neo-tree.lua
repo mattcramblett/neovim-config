@@ -8,5 +8,13 @@ return {
 	},
 	config = function()
 		vim.keymap.set("n", "<C-n>", "<Cmd>Neotree toggle<CR>", {}) -- toggle file tree explorer
+
+    require("neo-tree").setup({
+      filesystem = {
+        follow_current_file = {
+          enabled = true, -- This will find and focus the file in the active buffer every time
+        }
+      }
+    })
 	end,
 }
