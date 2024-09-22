@@ -11,16 +11,17 @@ git clone https://github.com/mattcramblett/neovim-config.git ~/.config/nvim
 
 leader: `<space>`
 
-| Action       |  Keys          |
-| -----------  |  ------------- |
-| Find file    |  `<leader>o`   |
-| Live Grep    |  `<leader>/`   |
-| Buffers      |  `,`           |
-| File Tree    |  `<leader>e`   |
-| Git          |  `<leader>gg`  |
-| Format File  |  `<leader>ff`  |
-| Prev. buffer |  `H`           |
-| Next buffer  |  `L`           |
+| Action        |  Keys          |
+| -----------   |  ------------- |
+| Find file     |  `<leader>o`   |
+| Live Grep     |  `<leader>/`   |
+| Buffers       |  `,`           |
+| File Tree     |  `<leader>e`   |
+| Git           |  `<leader>gg`  |
+| Format File   |  `<leader>ff`  |
+| Prev. buffer  |  `H`           |
+| Next buffer   |  `L`           |
+| Delete buffer |  `<leader>bd`  |
 
 # Troubleshooting
 ### Mason Formatter/Diagnostic Version Mismatch
