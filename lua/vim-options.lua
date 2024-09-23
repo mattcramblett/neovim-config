@@ -44,3 +44,8 @@ vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 vim.keymap.set("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 vim.keymap.set("n", "<leader>bd", ui.bufremove, { desc = "Delete Buffer" })
 
+-- terminal
+vim.keymap.set("n", "<leader>ft", "<cmd>FloatermNew --height=0.9 --width=0.9<cr>", { desc = "New Terminal (Project Root)" })
+vim.keymap.set("n", "<leader>fT", "<cmd>FloatermNew --height=0.9 --width=0.9 --cwd=<buffer><cr>", { desc = "New Terminal (Buffer Directory)" })
+vim.keymap.set({ "n", "t" }, "<C-t>", "<cmd>FloatermToggle<cr>", { desc = "Toggle Terminal" })
+
