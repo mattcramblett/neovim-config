@@ -45,11 +45,22 @@ vim.keymap.set("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buff
 vim.keymap.set("n", "<leader>bd", ui.bufremove, { desc = "Delete Buffer" })
 
 -- git
--- lazygit <leader>gg
+-- lazygit: <leader>gg
 vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", { desc = "Git preview hunk" })
+vim.keymap.set("n", "<leader>gr", ":Gitsigns reset_hunk<CR>", { desc = "Git reset hunk" })
 
 -- terminal
-vim.keymap.set("n", "<leader>ft", "<cmd>FloatermNew --height=0.9 --width=0.9<cr>", { desc = "New Terminal (Project Root)" })
-vim.keymap.set("n", "<leader>fT", "<cmd>FloatermNew --height=0.9 --width=0.9 --cwd=<buffer><cr>", { desc = "New Terminal (Buffer Directory)" })
+vim.keymap.set(
+  "n",
+  "<leader>ft",
+  "<cmd>FloatermNew --height=0.9 --width=0.9<cr>",
+  { desc = "New Terminal (Project Root)" }
+)
+vim.keymap.set(
+  "n",
+  "<leader>fT",
+  "<cmd>FloatermNew --height=0.9 --width=0.9 --cwd=<buffer><cr>",
+  { desc = "New Terminal (Buffer Directory)" }
+)
 vim.keymap.set({ "n", "t" }, "<C-t>", "<cmd>FloatermToggle<cr>", { desc = "Toggle Terminal" })
 
