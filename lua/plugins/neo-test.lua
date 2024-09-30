@@ -28,7 +28,7 @@ return {
     -- Keybinds
     vim.keymap.set("n", "<leader>t", neotest.run.run, { desc = "Run nearest [T]est" })
 
-    vim.keymap.set("n", "T", function()
+    vim.keymap.set("n", "<leader>T", function()
       neotest.run.run(vim.fn.expand("%"))
     end, { desc = "Run [T]ests in current file" })
 
