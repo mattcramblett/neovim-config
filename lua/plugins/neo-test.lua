@@ -40,7 +40,7 @@ return {
 			neotest.run.run({ strategy = "dap" })
 		end, { desc = "[T]est - [D]ebug nearest" })
 
-		vim.keymap.set("n", "ts", neotest.run.stop, { desc = "[T]est [S]top nearest" })
+		vim.keymap.set("n", "tt", neotest.run.stop, { desc = "[T]est Stop nearest" })
 		vim.keymap.set("n", "ta", neotest.run.attach, { desc = "[T]est - [A]ttach to nearest" })
     vim.keymap.set("n", "<leader>to", function() require("neotest").output.open({ enter = true, auto_close = true }) end, { desc = "Show [T]est [O]utput Panel" } )
 	end,
