@@ -78,3 +78,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
+-- Yank to the system clipboard
+vim.keymap.set("v", "<leader>y", '"+y', { desc = "[Y]ank to system clipboard" })
+vim.keymap.set("n", "<leader>p", '"+p', { desc = "[P]ast from system clipboard" })
