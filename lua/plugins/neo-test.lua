@@ -29,19 +29,37 @@ return {
 				-- require("codymikol/neotest-kotlin"),
 			},
 		})
-		-- Keybinds
-		vim.keymap.set("n", "<leader>t", neotest.run.run, { desc = "Run nearest [T]est" })
-
-		vim.keymap.set("n", "<leader>T", function()
-			neotest.run.run(vim.fn.expand("%"))
-		end, { desc = "Run [T]ests in current file" })
-
-		vim.keymap.set("n", "dt", function()
-			neotest.run.run({ strategy = "dap" })
-		end, { desc = "[T]est - [D]ebug nearest" })
-
-		vim.keymap.set("n", "tt", neotest.run.stop, { desc = "[T]est Stop nearest" })
-		vim.keymap.set("n", "ta", neotest.run.attach, { desc = "[T]est - [A]ttach to nearest" })
-    vim.keymap.set("n", "<leader>to", function() require("neotest").output.open({ enter = true, auto_close = true }) end, { desc = "Show [T]est [O]utput Panel" } )
 	end,
+  keys = {
+    {
+      "<leader>t",
+      function() require("neotest").run.run() end,
+      desc = "Run nearest [t]est"
+    },
+    {
+      "<leader>T",
+      function () require("neotest").run.run(vim.fn.expand("%")) end,
+      desc = "Run all [T]ests in current file"
+    },
+    {
+		  "<leader>td",
+      function() require("neotest").run.run({ strategy = "dap" }) end,
+      desc = "[T]est - [D]ebug nearest"
+    },
+    {
+      "<leader>ts",
+      function() require("neotest").run.stop() end,
+      desc = "[T]est [S]top nearest"
+    },
+    {
+      "<leader>ta",
+      function () require("neotest").run.attach() end,
+      desc = "[T]est - [A]ttach to nearest"
+    },
+    {
+      "<leader>to",
+      function() require("neotest").output.open({ enter = true, auto_close = true }) end,
+      desc = "Show [T]est [O]utput"
+    }
+  },
 }
