@@ -24,17 +24,23 @@ return {
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 			local lspconfig = require("lspconfig")
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
+
+      lspconfig.lua_ls.setup({
+        capabilities = capabilities,
 			})
+
 			lspconfig.ts_ls.setup({
 				capabilities = capabilities,
 			})
+
+      local util = require("lspconfig.util")
 			lspconfig.solargraph.setup({
 				capabilities = capabilities,
 				settings = {
-					solargraph = {
+					Solargraph = {
 						max_files = 25000,
+            root_dir = util.root_pattern("Gemfile", ".git")(fname) or util.path.dirname(vim.api.nvim_buf_get_name(0)),
+            exclude = { "client/**/*", "**/*.rbi" }
 					},
 				},
 			})
