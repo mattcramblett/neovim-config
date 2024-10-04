@@ -8,9 +8,12 @@ return {
 	{
 		"williamboman/mason-lspconfig.nvim",
 	  lazy = false,
-    opts = {
-      auto_install = true,
-    }
+    auto_install = true,
+    ensure_installed = {
+      "lua-language-server",
+      "typescripy-language-server",
+      "ruby-lsp",
+    },
   },
 	{
 		"neovim/nvim-lspconfig",
@@ -27,17 +30,9 @@ return {
 				capabilities = capabilities,
 			})
 
-      local util = require("lspconfig.util")
-			lspconfig.solargraph.setup({
-				capabilities = capabilities,
-				settings = {
-					Solargraph = {
-						max_files = 25000,
-            root_dir = util.root_pattern("Gemfile", ".git")(fname) or util.path.dirname(vim.api.nvim_buf_get_name(0)),
-            exclude = { "client/**/*", "**/*.rbi" }
-					},
-				},
-			})
+      lspconfig.ruby_lsp.setup({
+        capabilities = capabilities
+      })
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP Hover" })
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "[G]oto [D]efinition" })
