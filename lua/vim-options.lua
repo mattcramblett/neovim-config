@@ -7,6 +7,14 @@ vim.cmd("set shiftwidth=2")
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+vim.opt.autoindent = true             -- Indent: Copy indent from current line when starting new line
+vim.opt.clipboard = "unnamedplus"     -- Sync clipboard between OS and Neovim
+vim.opt.colorcolumn = "120"           -- Show vertical bar to indicate 120 chars
+
+-- Search
+vim.opt.ignorecase = true             -- Ignore case
+vim.opt.smartcase = true              -- unless uppercase chars are given
+
 -- better up/down
 vim.keymap.set({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
 vim.keymap.set({ "n", "x" }, "<Down>", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
@@ -78,7 +86,3 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-
--- Yank to the system clipboard
-vim.keymap.set("v", "<leader>y", '"+y', { desc = "[Y]ank to system clipboard" })
-vim.keymap.set("n", "<leader>p", '"+p', { desc = "[P]ast from system clipboard" })
