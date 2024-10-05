@@ -20,7 +20,7 @@ return {
 		}
 
 		-- Run linting on save
-		vim.api.nvim_create_autocmd({ "InsertLeave", "BufNew" }, {
+		vim.api.nvim_create_autocmd({ "InsertLeave", "BufRead" }, {
 			callback = function()
 				-- try_lint without arguments runs the linters defined in `linters_by_ft`
 				-- for the current filetype
