@@ -32,13 +32,15 @@ leader: `<space>`
 | Live Grep      | `<leader>/`   |
 | Buffers        | `,`           |
 | File Tree      | `<leader>e`   |
-| Git            | `<leader>gg`  |
 | Format File    | `<leader>ff`  |
 | Prev. buffer   | `H`           |
 | Next buffer    | `L`           |
 | Delete buffer  | `<leader>bd`  |
+| LazyGit        | `<leader>gg`  |
 | Git preview    | `<leader>gp`  |
 | Git reset hunk | `<leader<gr>` |
+| Git copy link  | `<leader>gy`  |
+| Git open link  | `<leader>gY`  |
 
 # Troubleshooting
 
@@ -52,6 +54,7 @@ This can be resolved by explicitly installing the desired version via Mason.
 ```
 
 Troubleshooting performance issues
+
 ```
 :profile start profile.log
 :profile func *
@@ -60,4 +63,3 @@ Troubleshooting performance issues
 :profile pause
 :noautocmd qall!
 ```
-
