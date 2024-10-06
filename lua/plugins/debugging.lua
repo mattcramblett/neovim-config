@@ -1,10 +1,15 @@
 return {
 	{
 		"mfussenegger/nvim-dap",
+    dependencies = {
+      "suketa/nvim-dap-ruby"
+    },
 		config = function()
 			local dap = require("dap")
 			vim.keymap.set("n", "<Leader>dt", dap.toggle_breakpoint, { desc = "[T]oggle breakpoint" })
 			vim.keymap.set("n", "<Leader>dc", dap.continue, { desc = "[C]ontinue" })
+
+      require("dap-ruby").setup()
 		end,
 	},
 	{
