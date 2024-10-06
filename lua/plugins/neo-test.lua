@@ -28,6 +28,8 @@ return {
 
 		opts.adapters = {
 			require("neotest-rspec")({
+        -- May need to customize this by writing a function that ignores everything except the ./spec directory
+        -- https://github.com/olimorris/neotest-rspec?tab=readme-ov-file#filtering-directories
 				filter_dirs = { ".git", "node_modules", "sorbet", "client", "client_monorepo", "db", "script", "log" },
 				-- Optionally your function can take a position_type which is one of:
 				-- - "file"
