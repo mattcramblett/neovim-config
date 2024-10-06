@@ -14,46 +14,56 @@ return {
 		status = { virtual_text = true },
 		output = { open_on_run = true },
 	},
-	config = function()
-		local neotest = require("neotest")
-		neotest.setup({
-			adapters = {
-				require("neotest-rspec")({
-					filter_dirs = { ".git", "node_modules", "sorbet", "client", "client_monorepo", "db", "script", "log" },
-					-- Optionally your function can take a position_type which is one of:
-					-- - "file"
-					-- - "test"
-					-- - "dir"
-					rspec_cmd = function(position_type)
-						-- ensure generated tests (ex: .each loops with an example) will fail past the first iteration if needed.
-						-- only do this when running an individual test because otherwise the whole file fails if one example fails.
-						if position_type == "test" then
-							return vim.tbl_flatten({
-								"bundle",
-								"exec",
-								"rspec",
-								"--fail-fast",
-							})
-						else
-							return vim.tbl_flatten({
-								"bundle",
-								"exec",
-								"rspec",
-							})
-						end
-					end,
-				}),
-				require("neotest-jest")({ -- https://github.com/nvim-neotest/neotest-jest?tab=readme-ov-file#monorepos
-					jestCommand = "yarn test --",
-					jestConfigFile = "jest.config.ts",
-					env = { CI = true },
-					cwd = function(_path)
-						return vim.fn.getcwd()
-					end,
-				}),
-				-- require("codymikol/neotest-kotlin"),
-			},
-		})
+	config = function(_, opts)
+    opts.diagnostic = {
+			enabled = true,
+			severity = 1,
+		}
+
+		opts.status = {
+			enabled = true,
+			signs = true,
+			virtual_text = true,
+		}
+
+		opts.adapters = {
+			require("neotest-rspec")({
+				filter_dirs = { ".git", "node_modules", "sorbet", "client", "client_monorepo", "db", "script", "log" },
+				-- Optionally your function can take a position_type which is one of:
+				-- - "file"
+				-- - "test"
+				-- - "dir"
+				rspec_cmd = function(position_type)
+					-- ensure generated tests (ex: .each loops with an example) will fail past the first iteration if needed.
+					-- only do this when running an individual test because otherwise the whole file fails if one example fails.
+					if position_type == "test" then
+						return vim.tbl_flatten({
+							"bundle",
+							"exec",
+							"rspec",
+							"--fail-fast",
+						})
+					else
+						return vim.tbl_flatten({
+							"bundle",
+							"exec",
+							"rspec",
+						})
+					end
+				end,
+			}),
+			require("neotest-jest")({ -- https://github.com/nvim-neotest/neotest-jest?tab=readme-ov-file#monorepos
+				jestCommand = "yarn test --",
+				jestConfigFile = "jest.config.ts",
+				env = { CI = true },
+				cwd = function()
+					return vim.fn.getcwd()
+				end,
+			}),
+			-- require("codymikol/neotest-kotlin"),
+		}
+
+		require("neotest").setup(opts)
 	end,
 	keys = {
 		{
@@ -97,6 +107,13 @@ return {
 				require("neotest").output.open({ enter = true, auto_close = true })
 			end,
 			desc = "Show [T]est [O]utput",
+		},
+		{
+			"<leader>tts",
+			function()
+				require("neotest").summary.toggle()
+			end,
+			desc = "[T]est [T]oggle [S]ummary",
 		},
 	},
 }
