@@ -31,7 +31,7 @@ return {
 				scss = { "prettier" },
 				markdown = { "prettier" },
 				yaml = { "prettier" },
-        ["_"] = { "trim_whitespace" }, -- filetype with no formatter
+				["_"] = { "trim_whitespace" }, -- filetype with no formatter
 			},
 			default_format_opts = {
 				lsp_format = "fallback",
