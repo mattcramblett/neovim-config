@@ -7,14 +7,14 @@ return {
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
-	  lazy = false,
-    auto_install = true,
-    ensure_installed = {
-      "lua-language-server",
-      "typescripy-language-server",
-      "ruby-lsp",
-    },
-  },
+		lazy = false,
+    config = function()
+      require("mason-lspconfig").setup({
+		    auto_install = true,
+        ensure_installed = { "lua_ls", "ts_ls", "ruby_lsp" }
+      })
+    end
+	},
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
@@ -22,8 +22,8 @@ return {
 
 			local lspconfig = require("lspconfig")
 
-      lspconfig.lua_ls.setup({
-        capabilities = capabilities,
+			lspconfig.lua_ls.setup({
+				capabilities = capabilities,
 			})
 
 			lspconfig.ts_ls.setup({
@@ -31,8 +31,8 @@ return {
 			})
 
       lspconfig.ruby_lsp.setup({
-        capabilities = capabilities
-      })
+			  capabilities = capabilities,
+		  })
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP Hover" })
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "[G]oto [D]efinition" })
