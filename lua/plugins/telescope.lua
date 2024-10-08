@@ -30,7 +30,7 @@ return {
             require('telescope.themes').get_dropdown(),
           },
           fzf = {
-            fuzzy = false, -- only exact matching
+            -- fuzzy = false, -- only exact matching
           }
         },
       }
