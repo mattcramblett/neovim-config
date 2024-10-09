@@ -20,6 +20,13 @@ return {
 			severity = 1,
 		}
 
+    opts.discovery = {
+      concurrent = 1, -- trying this to help with lag
+      -- enabled = false,
+      -- filter_dir = fun(name: string, rel_path: string, root: string): booleans
+      --   A function to filter directories when searching for test files. Receives the name, path relative to project root and project root path
+    }
+
 		opts.status = {
 			enabled = true,
 			signs = true,
