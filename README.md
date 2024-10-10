@@ -8,7 +8,7 @@ git clone https://github.com/mattcramblett/neovim-config.git ~/.config/nvim
 
 - Lazy Git `brew install lazygit`
 - Rip Grep `brew install ripgrep`
-- Ruby LSP `gem install ruby-lsp` 
+- Ruby LSP `gem install ruby-lsp`
 - [Git Delta](https://github.com/dandavison/delta) - pretty git diffs
   - Follow instructions in repo:
   - `brew install git-delta`
