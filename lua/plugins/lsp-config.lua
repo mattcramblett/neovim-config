@@ -40,6 +40,7 @@ return {
         root_dir = require'lspconfig'.util.root_pattern("gradlew", ".git"),
       })
 
+      vim.keymap.set("n", "M", vim.diagnostic.open_float, { desc = "Diagnostics - open float window" })
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP Hover" })
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "[G]oto [D]efinition" })
 			vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references, { desc = "[G]oto [R]eferences" })
