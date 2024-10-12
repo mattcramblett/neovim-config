@@ -11,7 +11,7 @@ return {
     config = function()
       require("mason-lspconfig").setup({
 		    auto_install = true,
-        ensure_installed = { "lua_ls", "ts_ls", "ruby_lsp" }
+        ensure_installed = { "lua_ls", "ts_ls", "ruby_lsp", "kotlin_language_server" }
       })
     end
 	},
@@ -33,6 +33,12 @@ return {
       lspconfig.ruby_lsp.setup({
 			  capabilities = capabilities,
 		  })
+
+      lspconfig.kotlin_language_server.setup({
+        capabilities = capabilities,
+        filetypes = { "kotlin" },
+        root_dir = require'lspconfig'.util.root_pattern("gradlew", ".git"),
+      })
 
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP Hover" })
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "[G]oto [D]efinition" })
