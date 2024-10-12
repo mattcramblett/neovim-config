@@ -27,11 +27,12 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = tr
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
 
--- Resize window using <ctrl> arrow keys
-vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
-vim.keymap.set("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
-vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
-vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
+-- Resize window height using alt arrow keys
+vim.keymap.set("n", "<M-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
+vim.keymap.set("n", "<M-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
+-- Resize width with _ and +
+vim.keymap.set("n", "_", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
+vim.keymap.set("n", "+", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
 
 -- Add undo break-points
 vim.keymap.set("i", ",", ",<c-g>u")
