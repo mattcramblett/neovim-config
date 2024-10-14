@@ -15,17 +15,17 @@ return {
 		output = { open_on_run = true },
 	},
 	config = function(_, opts)
-    opts.diagnostic = {
+		opts.diagnostic = {
 			enabled = true,
 			severity = 1,
 		}
 
-    opts.discovery = {
-      concurrent = 1, -- trying this to help with lag
-      -- enabled = false,
-      -- filter_dir = fun(name: string, rel_path: string, root: string): booleans
-      --   A function to filter directories when searching for test files. Receives the name, path relative to project root and project root path
-    }
+		opts.discovery = {
+			concurrent = 1, -- trying this to help with lag
+			-- enabled = false,
+			-- filter_dir = fun(name: string, rel_path: string, root: string): booleans
+			--   A function to filter directories when searching for test files. Receives the name, path relative to project root and project root path
+		}
 
 		opts.status = {
 			enabled = true,
@@ -35,8 +35,8 @@ return {
 
 		opts.adapters = {
 			require("neotest-rspec")({
-        -- May need to customize this by writing a function that ignores everything except the ./spec directory
-        -- https://github.com/olimorris/neotest-rspec?tab=readme-ov-file#filtering-directories
+				-- May need to customize this by writing a function that ignores everything except the ./spec directory
+				-- https://github.com/olimorris/neotest-rspec?tab=readme-ov-file#filtering-directories
 				filter_dirs = { ".git", "node_modules", "sorbet", "client", "client_monorepo", "db", "script", "log" },
 				-- Optionally your function can take a position_type which is one of:
 				-- - "file"
@@ -61,11 +61,19 @@ return {
 					end
 				end,
 			}),
-			require("neotest-jest")({ -- https://github.com/nvim-neotest/neotest-jest?tab=readme-ov-file#monorepos
-				jestCommand = "yarn test --",
-				jestConfigFile = "jest.config.ts",
-				env = { CI = true },
-				cwd = function()
+			require("neotest-jest")({
+				-- jestCommand = "jest --passWithNoTests",
+				jestConfigFile = function(file)
+					if string.find(file, "/apps/") then
+						return string.match(file, "(.-/apps/[^/]+/)") .. "jest.config.js"
+					end
+
+					return vim.fn.getcwd() .. "/jest.config.js"
+				end,
+				cwd = function(file)
+					if string.find(file, "/apps/") then
+						return string.match(file, "(.-/apps/[^/]+/)")
+					end
 					return vim.fn.getcwd()
 				end,
 			}),
