@@ -24,6 +24,7 @@ return {
 				typescriptreact = { "prettier" },
 				javascript = { "prettier" },
 				javascriptreact = { "prettier" },
+        markdown = { "deno_fmt" },
 				["_"] = { "trim_whitespace" }, -- filetype with no formatter
 			},
 			default_format_opts = {

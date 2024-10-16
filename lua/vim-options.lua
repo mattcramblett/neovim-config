@@ -72,6 +72,8 @@ vim.keymap.set(
   { desc = "New Terminal (Buffer Directory)" }
 )
 vim.keymap.set({ "n", "t" }, "<C-t>", "<cmd>FloatermToggle<cr>", { desc = "Toggle Terminal" })
+vim.keymap.set({ "t" }, "<C-[>", "<cmd>FloatermPrev<cr>", { desc = "Previous Terminal" })
+vim.keymap.set({ "t" }, "<C-]>", "<cmd>FloatermNext<cr>", { desc = "Next Terminal" })
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode

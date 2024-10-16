@@ -44,6 +44,17 @@ leader: `<space>`
 | Git copy link  | `<leader>gy`  |
 | Git open link  | `<leader>gY`  |
 
+## Terminal
+Opening a terminal inside neovim
+
+| Action             | Keys          |
+| --------------     | ------------- |
+| New terminal       | `<leader>ft`  |
+| New terminal (cwd) | `<leader>fT`  |
+| Toggle terminal    | `ctrl-t`      |
+| Previous Terminal  | `ctrl-[`      |
+| Next Terminal      | `ctrl-]`      |
+
 # Troubleshooting
 
 ### Mason Formatter/Diagnostic Version Mismatch
