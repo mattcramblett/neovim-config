@@ -23,6 +23,7 @@ return {
 		rubocop.args = {
 			"--require",
 			"rubocop-rspec",
+      "--cache", -- attempt to improve performance
 		}
 		-- Run linting on save
 		vim.api.nvim_create_autocmd({ "BufRead", "BufWritePost" }, {
