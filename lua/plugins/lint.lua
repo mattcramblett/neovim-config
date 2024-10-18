@@ -19,7 +19,12 @@ return {
 			sql = { "sqlfluff" },
 		}
 
-    -- Run linting on save
+		local rubocop = require("lint").linters.rubocop
+		rubocop.args = {
+			"--require",
+			"rubocop-rspec",
+		}
+		-- Run linting on save
 		vim.api.nvim_create_autocmd({ "BufRead", "BufWritePost" }, {
 			callback = function()
 				-- try_lint without arguments runs the linters defined in `linters_by_ft`
