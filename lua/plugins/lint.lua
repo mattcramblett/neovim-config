@@ -1,14 +1,16 @@
 return {
 	"mfussenegger/nvim-lint",
 	config = function()
+		local lint = require("lint")
+
 		-- Linters by filetype
-		require("lint").linters_by_ft = {
+		lint.linters_by_ft = {
 			ruby = { "rubocop" },
 			kotlin = { "ktlint" },
-			typescript = { "eslint" },
-			javascript = { "eslint" },
-			typescriptreact = { "eslint" },
-			javascriptreact = { "eslint" },
+			typescript = { "eslint_d", "eslint" },
+			javascript = { "eslint_d", "eslint" },
+			typescriptreact = { "eslint_d", "eslint" },
+			javascriptreact = { "eslint_d", "eslint" },
 			html = { "htmlhint" },
 			css = { "stylelint" },
 			scss = { "stylelint" },
@@ -19,14 +21,18 @@ return {
 			sql = { "sqlfluff" },
 		}
 
-		local rubocop = require("lint").linters.rubocop
+		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+
+		local rubocop = lint.linters.rubocop
 		rubocop.args = {
 			"--require",
 			"rubocop-rspec",
-      "--cache", -- attempt to improve performance
+			"--cache", -- attempt to improve performance
 		}
+
 		-- Run linting on save
 		vim.api.nvim_create_autocmd({ "BufRead", "BufWritePost" }, {
+			group = lint_augroup,
 			callback = function()
 				-- try_lint without arguments runs the linters defined in `linters_by_ft`
 				-- for the current filetype
