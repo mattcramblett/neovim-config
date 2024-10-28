@@ -11,7 +11,7 @@ return {
     config = function()
       require("mason-lspconfig").setup({
 		    auto_install = true,
-        ensure_installed = { "lua_ls", "ts_ls", "ruby_lsp", "kotlin_language_server" }
+        ensure_installed = { "lua_ls", "ts_ls", "ruby_lsp", "kotlin_language_server", "tailwindcss" }
       })
     end
 	},
