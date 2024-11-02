@@ -33,18 +33,29 @@ return {
 						-- fuzzy = false, -- only exact matching
 					},
 				},
-        pickers = {
-          buffers = {
-            show_all_buffers = true,
-            sort_lastused = true,
-            previewer = true,
-            mappings = {
-              i = {
-                ["<c-d>"] = "delete_buffer",
-              },
-            },
-          },
-        },
+				pickers = {
+					buffers = {
+						show_all_buffers = true,
+						sort_lastused = true,
+						previewer = true,
+						mappings = {
+							i = {
+								["<c-d>"] = "delete_buffer",
+							},
+						},
+					},
+					find_files = {
+						-- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
+						find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*", "--glob", "!*.rbi" },
+					},
+					live_grep = {
+						additional_args = function()
+							-- add more 'glob' args to ignore more file types. Ex:
+							-- return { "--glob", "!*.rbi", "--glob", "!*.log" }
+							return { "--glob", "!*.rbi" }
+						end,
+					},
+				},
 			})
 
 			require("telescope").load_extension("fzf")
