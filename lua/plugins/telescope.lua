@@ -6,7 +6,7 @@ return {
 			"nvim-lua/plenary.nvim",
 			"BurntSushi/ripgrep",
 			{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
-      { 'nvim-telescope/telescope-ui-select.nvim' },
+			{ "nvim-telescope/telescope-ui-select.nvim" },
 			{ -- If encountering errors, see telescope-fzf-native README for installation instructions
 				"nvim-telescope/telescope-fzf-native.nvim",
 
@@ -24,21 +24,33 @@ return {
 		config = function()
 			local builtin = require("telescope.builtin")
 
-      require('telescope').setup {
-        extensions = {
-          ['ui-select'] = {
-            require('telescope.themes').get_dropdown(),
+			require("telescope").setup({
+				extensions = {
+					["ui-select"] = {
+						require("telescope.themes").get_dropdown(),
+					},
+					fzf = {
+						-- fuzzy = false, -- only exact matching
+					},
+				},
+        pickers = {
+          buffers = {
+            show_all_buffers = true,
+            sort_lastused = true,
+            previewer = true,
+            mappings = {
+              i = {
+                ["<c-d>"] = "delete_buffer",
+              },
+            },
           },
-          fzf = {
-            -- fuzzy = false, -- only exact matching
-          }
         },
-      }
+			})
 
-      require('telescope').load_extension('fzf')
-      require('telescope').load_extension('ui-select')
+			require("telescope").load_extension("fzf")
+			require("telescope").load_extension("ui-select")
 
-      vim.keymap.set("n", "<leader>o", builtin.find_files, { desc = "Find files" }) -- search for file by name
+			vim.keymap.set("n", "<leader>o", builtin.find_files, { desc = "Find files" }) -- search for file by name
 			vim.keymap.set("n", "<leader>/", builtin.live_grep, { desc = "Live grep" }) -- global text search
 			vim.keymap.set("n", ",", builtin.buffers, { desc = "Telescope buffers" })
 		end,
