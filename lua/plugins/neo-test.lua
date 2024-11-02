@@ -8,7 +8,10 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		"olimorris/neotest-rspec",
 		"nvim-neotest/neotest-jest",
-		"codymikol/neotest-kotlin",
+    {
+      "mattcramblett/neotest-gradle",
+      -- dir = '~/code/neotest-gradle',
+    }
 	},
 	opts = {
 		status = { virtual_text = true },
@@ -78,6 +81,7 @@ return {
 				end,
 			}),
 			-- require("codymikol/neotest-kotlin"),
+      require("neotest-gradle"),
 		}
 
 		require("neotest").setup(opts)
