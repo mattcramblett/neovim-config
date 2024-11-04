@@ -18,6 +18,7 @@ return {
           hide_dotfiles = false,
           hide_gitignored = false,
         },
+        group_empty_dirs = true,
       }
     })
 	end,
