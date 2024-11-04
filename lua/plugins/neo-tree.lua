@@ -7,7 +7,7 @@ return {
 		"MunifTanjim/nui.nvim",
 	},
 	config = function()
-		vim.keymap.set("n", "<leader>e", "<Cmd>Neotree toggle<CR>", { desc = "Toggle File Tree" })
+		vim.keymap.set("n", "<leader>e", "<Cmd>Neotree toggle<CR>", { desc = "Toggle File Tree" }) -- toggle file tree explorer
 
     require("neo-tree").setup({
       filesystem = {
@@ -18,7 +18,6 @@ return {
           hide_dotfiles = false,
           hide_gitignored = false,
         },
-        group_empty_dirs = true,
       }
     })
 	end,

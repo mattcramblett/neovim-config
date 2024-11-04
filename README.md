@@ -8,7 +8,7 @@ git clone https://github.com/mattcramblett/neovim-config.git ~/.config/nvim
 
 - Lazy Git `brew install lazygit`
 - Rip Grep `brew install ripgrep`
-- Solargraph (LSP for ruby) `gem install --user-install solargraph`
+- Ruby LSP `gem install ruby-lsp`
 - Rubocop Rspec `gem install rubocop-rspec` (helps linting performance in rspec files)
 - [Git Delta](https://github.com/dandavison/delta) - pretty git diffs
   - Follow instructions in repo:
