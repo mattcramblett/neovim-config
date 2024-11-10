@@ -48,14 +48,18 @@ return {
 					find_files = {
 						-- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
 						-- `-i` for case-insensitive
-						find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*", "--glob", "!*.rbi", "-i" },
-					},
-					live_grep = {
-						additional_args = function()
-							-- add more 'glob' args to ignore more file types. Ex:
-							-- return { "--glob", "!*.rbi", "--glob", "!*.log" }
-							return { "--glob", "!*.rbi" }
-						end,
+						-- `-F` == `--fixed-strings`, meaning no regex and literal strings
+						find_command = {
+							"rg",
+							"--files",
+							"--hidden",
+							"--glob",
+							"!**/.git/*",
+							"--glob",
+							"!*.rbi",
+							"-i",
+							"-F",
+						},
 					},
 				},
 			})
@@ -63,12 +67,22 @@ return {
 			require("telescope").load_extension("fzf")
 			require("telescope").load_extension("ui-select")
 
+      -- args to pass to ripgrep https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#common-options
+
 			vim.keymap.set("n", "<leader>o", builtin.find_files, { desc = "Find files" }) -- search for file by name
-			vim.keymap.set("n", "<leader>/", builtin.live_grep, { desc = "Live grep" }) -- global text search
+			vim.keymap.set("n", "<leader>/", function()
+				-- fixed-strings: Disable regular expression matching and treat the pattern as a literal string.
+				builtin.live_grep({ additional_args = { "--ignore-case", "--fixed-strings", "--glob", "!*.rbi" } })
+			end, { desc = "Live grep words" })
+
+			vim.keymap.set("n", "<leader>s", function()
+				builtin.live_grep({ additional_args = { "--glob", "!*.rbi" } })
+			end, { desc = "Live grep regex" })
+
 			vim.keymap.set("n", ",", builtin.buffers, { desc = "Telescope buffers" })
 
 			-- Quick searches
-			vim.keymap.set("n", "gs", 'yiw/<c-r>"<cr>', { desc = "[G]o to [S]earch within file" })
+			vim.keymap.set("n", "gs", 'yiw/<c-r>"<cr>', { desc = "[G]o to [S]earch within current file" })
 			vim.keymap.set("n", "gS", builtin.grep_string, { desc = "[G]o to [S]earch" })
 			vim.keymap.set("n", "go", function()
 				builtin.find_files({ search_file = vim.fn.expand("<cword>") })
