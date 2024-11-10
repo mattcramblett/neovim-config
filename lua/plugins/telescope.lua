@@ -31,6 +31,7 @@ return {
 					},
 					fzf = {
 						-- fuzzy = false, -- only exact matching
+						case_mode = "ignore_case", -- "smart_case", "ignore_case" or "respect_case"
 					},
 				},
 				pickers = {
@@ -46,7 +47,8 @@ return {
 					},
 					find_files = {
 						-- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
-						find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*", "--glob", "!*.rbi" },
+						-- `-i` for case-insensitive
+						find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*", "--glob", "!*.rbi", "-i" },
 					},
 					live_grep = {
 						additional_args = function()
@@ -64,6 +66,13 @@ return {
 			vim.keymap.set("n", "<leader>o", builtin.find_files, { desc = "Find files" }) -- search for file by name
 			vim.keymap.set("n", "<leader>/", builtin.live_grep, { desc = "Live grep" }) -- global text search
 			vim.keymap.set("n", ",", builtin.buffers, { desc = "Telescope buffers" })
+
+			-- Quick searches
+			vim.keymap.set("n", "gs", 'yiw/<c-r>"<cr>', { desc = "[G]o to [S]earch within file" })
+			vim.keymap.set("n", "gS", builtin.grep_string, { desc = "[G]o to [S]earch" })
+			vim.keymap.set("n", "go", function()
+				builtin.find_files({ search_file = vim.fn.expand("<cword>") })
+			end, { desc = "[G]o to [O]pen file (search files with word)" })
 		end,
 	},
 }
