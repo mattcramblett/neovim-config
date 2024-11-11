@@ -32,7 +32,8 @@ return {
 
     local ktlint = lint.linters.ktlint
     ktlint.args = {
-      '--indent_size=2',
+      '--indent_size',
+      '2',
     }
 
 		-- Run linting on save
