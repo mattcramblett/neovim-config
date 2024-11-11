@@ -15,7 +15,7 @@ return {
 			css = { "stylelint" },
 			scss = { "stylelint" },
 			json = { "jsonlint" },
-			markdown = { "vale" },
+			markdown = { "alex" },
 			python = { "pylint" },
 			zsh = { "zsh" },
 			sql = { "sqlfluff" },
