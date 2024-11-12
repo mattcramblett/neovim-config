@@ -92,7 +92,7 @@ return {
 			vim.keymap.set("n", "gs", 'yiw/<c-r>"<cr>', { desc = "[G]o to [S]earch within current file" })
 			vim.keymap.set("n", "gS", builtin.grep_string, { desc = "[G]o to [S]earch" })
 			vim.keymap.set("n", "go", function()
-				builtin.find_files({ search_file = vim.fn.expand("<cword>") })
+				builtin.find_files({ default_text = vim.fn.expand("<cword>") })
 			end, { desc = "[G]o to [O]pen file (search files with word)" })
 		end,
 	},
