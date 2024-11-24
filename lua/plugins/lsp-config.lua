@@ -11,7 +11,7 @@ return {
     config = function()
       require("mason-lspconfig").setup({
 		    auto_install = true,
-        ensure_installed = { "lua_ls", "ts_ls", "ruby_lsp", "kotlin_language_server", "tailwindcss" }
+        ensure_installed = { "lua_ls", "ts_ls", "ruby_lsp", "kotlin_language_server", "tailwindcss", "zls" }
       })
     end
 	},
@@ -31,6 +31,10 @@ return {
 			})
 
       lspconfig.ruby_lsp.setup({
+			  capabilities = capabilities,
+		  })
+
+      lspconfig.zls.setup({ -- zig
 			  capabilities = capabilities,
 		  })
 
