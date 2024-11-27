@@ -8,12 +8,12 @@ return {
 	{
 		"williamboman/mason-lspconfig.nvim",
 		lazy = false,
-    config = function()
-      require("mason-lspconfig").setup({
-		    auto_install = true,
-        ensure_installed = { "lua_ls", "ts_ls", "ruby_lsp", "kotlin_language_server", "tailwindcss", "zls" }
-      })
-    end
+		config = function()
+			require("mason-lspconfig").setup({
+				auto_install = true,
+				ensure_installed = { "lua_ls", "ts_ls", "ruby_lsp", "kotlin_language_server", "tailwindcss", "zls" },
+			})
+		end,
 	},
 	{
 		"neovim/nvim-lspconfig",
@@ -30,21 +30,21 @@ return {
 				capabilities = capabilities,
 			})
 
-      lspconfig.ruby_lsp.setup({
-			  capabilities = capabilities,
-		  })
+			lspconfig.ruby_lsp.setup({
+				capabilities = capabilities,
+			})
 
-      lspconfig.zls.setup({ -- zig
-			  capabilities = capabilities,
-		  })
+			lspconfig.zls.setup({ -- zig
+				capabilities = capabilities,
+			})
 
-      lspconfig.kotlin_language_server.setup({
-        capabilities = capabilities,
-        filetypes = { "kotlin" },
-        root_dir = require'lspconfig'.util.root_pattern("gradlew", ".git"),
-      })
+			lspconfig.kotlin_language_server.setup({
+				capabilities = capabilities,
+				filetypes = { "kotlin" },
+				root_dir = require("lspconfig").util.root_pattern("gradlew", ".git"),
+			})
 
-      vim.keymap.set("n", "M", vim.diagnostic.open_float, { desc = "Diagnostics - open float window" })
+			vim.keymap.set("n", "M", vim.diagnostic.open_float, { desc = "Diagnostics - open float window" })
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP Hover" })
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "[G]oto [D]efinition" })
 			vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references, { desc = "[G]oto [R]eferences" })
