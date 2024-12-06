@@ -42,7 +42,7 @@ return {
 			callback = function()
 				-- try_lint without arguments runs the linters defined in `linters_by_ft`
 				-- for the current filetype
-				require("lint").try_lint()
+				require("lint").try_lint(nil, { ignore_errors = true })
 			end,
 		})
 	end,
