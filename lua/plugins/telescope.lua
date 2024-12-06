@@ -80,7 +80,7 @@ return {
 				builtin.live_grep({ additional_args = { "--glob", "!*.rbi" } })
 			end, { desc = "Live grep (regex)" })
 			vim.keymap.set(
-				{ "n", "i", "v" },
+				"n",
 				"<leader>?",
 				":!open https://regex101.com<CR><CR>",
 				{ desc = "Open regex101 for help!" }
