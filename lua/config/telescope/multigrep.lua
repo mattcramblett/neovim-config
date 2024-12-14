@@ -22,10 +22,16 @@ local live_multigrep = function (opts)
         table.insert(args, pieces[1])
       end
 
-      -- after double space, set the 'glob' to filter the filetype
-      if pieces[2] then
+      -- default globs for certain projects
+      if string.match(opts.cwd, "code/upstart_web$") then
         table.insert(args, "--glob")
-        table.insert(args, "!*.rbi") -- default
+        table.insert(args, "!*.rbi")
+        table.insert(args, "--glob")
+        table.insert(args, "!*.csv")
+      end
+
+      -- Allow input of additional globs to filter files, after search + double space.
+      if pieces[2] then
         table.insert(args, "--glob")
         table.insert(args, pieces[2])
       end
@@ -52,9 +58,7 @@ end
 M.setup = function ()
   -- args to pass to ripgrep
   -- https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#common-options
-  vim.keymap.set("n", "<leader>s", function ()
-    live_multigrep()
-  end, { desc = "Live grep (regex)" })
+  vim.keymap.set("n", "<leader>s", live_multigrep, { desc = "Live grep (regex)" })
 
   vim.keymap.set("n", "<leader>/", function ()
     live_multigrep({ additional_args = { "--ignore-case", "--fixed-strings" } })
