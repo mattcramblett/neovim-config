@@ -36,6 +36,7 @@ return {
 				},
 				pickers = {
 					buffers = {
+            theme = "ivy",
 						show_all_buffers = true,
 						sort_lastused = true,
 						previewer = true,
@@ -46,6 +47,7 @@ return {
 						},
 					},
 					find_files = {
+            theme = "ivy",
 						-- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
 						-- `-i` for case-insensitive
 						-- `-F` == `--fixed-strings`, meaning no regex and literal strings
