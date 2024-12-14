@@ -77,6 +77,7 @@ return {
 				":!open https://regex101.com<CR><CR>",
 				{ desc = "Open regex101 for help!" }
 			)
+			vim.keymap.set("n", "<leader>h", builtin.help_tags, { desc = "Search [H]elp" }) -- search help docs
 
 			vim.keymap.set("n", ",", builtin.buffers, { desc = "Telescope buffers" })
 
