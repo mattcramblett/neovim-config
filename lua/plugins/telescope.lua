@@ -81,6 +81,12 @@ return {
 
 			vim.keymap.set("n", ",", builtin.buffers, { desc = "Telescope buffers" })
 
+      -- Quickfix
+      vim.keymap.set("n", "<M-j>", "<cmd>cnext<CR>", { desc = "qfix next" })
+      vim.keymap.set("n", "<M-k>", "<cmd>cprev<CR>", { desc = "qfix prev" })
+      vim.keymap.set("n", "<M-c>", "<cmd>cclose<CR>", { desc = "qfix close" })
+      vim.keymap.set("n", "<M-o>", "<cmd>copen<CR>", { desc = "qfix open" })
+
 			-- Quick searches
 			vim.keymap.set("n", "gs", 'yiw/<c-r>"<cr>', { desc = "[G]o to [S]earch within current file" })
 			vim.keymap.set("n", "gS", builtin.grep_string, { desc = "[G]o to [S]earch" })

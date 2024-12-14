@@ -25,6 +25,12 @@ git clone https://github.com/mattcramblett/neovim-config.git ~/.config/nvim
     ```
 - Terminal background color to match Neovim color scheme: `#182130`
 
+## iTerm
+- Profiles (default) -> Keys -> Left/Right option key -> Esc+
+    - This allows iTerm to properly send alt/option key
+- Profiles (default) -> Text
+    - JetBrains Mono, Regular, 16, 100 v|i, 105 n/n
+
 # Keybindings
 
 leader: `<space>`
