@@ -35,21 +35,22 @@ git clone https://github.com/mattcramblett/neovim-config.git ~/.config/nvim
 
 leader: `<space>`
 
-| Action         | Keys          |
-| -------------- | ------------- |
-| Find file      | `<leader>o`   |
-| Live Grep      | `<leader>/`   |
-| Buffers        | `,`           |
-| File Tree      | `<leader>e`   |
-| Format File    | `<leader>ff`  |
-| Prev. buffer   | `H`           |
-| Next buffer    | `L`           |
-| Delete buffer  | `<leader>bd`  |
-| LazyGit        | `<leader>gg`  |
-| Git preview    | `<leader>gp`  |
-| Git reset hunk | `<leader<gr>` |
-| Git copy link  | `<leader>gy`  |
-| Git open link  | `<leader>gY`  |
+| Action               | Keys          |
+| -------------------- | ------------- |
+| Find file            | `<leader>o`   |
+| Live Grep Words      | `<leader>/`   |
+| Live Grep Regex      | `<leader>s`   |
+| buffers              | `,`           |
+| File Tree            | `<leader>e`   |
+| Format File          | `<leader>ff`  |
+| Prev. buffer         | `H`           |
+| Next buffer          | `L`           |
+| Delete buffer        | `<leader>bd`  |
+| LazyGit              | `<leader>gg`  |
+| Git preview          | `<leader>gp`  |
+| Git reset hunk       | `<leader<gr>` |
+| git copy link        | `<leader>gy`  |
+| git open link        | `<leader>gY`  |
 
 ## Terminal
 Opening a terminal inside neovim
@@ -61,6 +62,15 @@ Opening a terminal inside neovim
 | Toggle terminal    | `ctrl-t`      |
 | Previous Terminal  | `ctrl-[`      |
 | Next Terminal      | `ctrl-]`      |
+
+## Vim Reminders
+Stuff that's easy to forget
+
+| Action                                    | Keys                   |
+| ----------------------------------------- | ---------------------- |
+| find text and replace all                 | `:%s/find/replace/g`   |
+| find text and replace checking each       | `:%s/find/replace/gc`  |
+| find text on current line and replace all | `:%s/find/replace/gc`  |
 
 # Troubleshooting
 

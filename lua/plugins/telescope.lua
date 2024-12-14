@@ -86,6 +86,7 @@ return {
       vim.keymap.set("n", "<M-k>", "<cmd>cprev<CR>", { desc = "qfix prev" })
       vim.keymap.set("n", "<M-c>", "<cmd>cclose<CR>", { desc = "qfix close" })
       vim.keymap.set("n", "<M-o>", "<cmd>copen<CR>", { desc = "qfix open" })
+      -- :cdo s/find/replace/gc will find and replace over every item in the quickfix list
 
 			-- Quick searches
 			vim.keymap.set("n", "gs", 'yiw/<c-r>"<cr>', { desc = "[G]o to [S]earch within current file" })
