@@ -66,19 +66,9 @@ return {
 
 			require("telescope").load_extension("fzf")
 			require("telescope").load_extension("ui-select")
-
-			-- args to pass to ripgrep
-			-- https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md#common-options
+      require("config.telescope.multigrep").setup()
 
 			vim.keymap.set("n", "<leader>o", builtin.find_files, { desc = "Find files" }) -- search for file by name
-			vim.keymap.set("n", "<leader>/", function()
-				-- fixed-strings: Disable regular expression matching and treat the pattern as a literal string.
-				builtin.live_grep({ additional_args = { "--ignore-case", "--fixed-strings", "--glob", "!*.rbi" } })
-			end, { desc = "Live grep (words)" })
-
-			vim.keymap.set("n", "<leader>s", function()
-				builtin.live_grep({ additional_args = { "--glob", "!*.rbi" } })
-			end, { desc = "Live grep (regex)" })
 			vim.keymap.set(
 				"n",
 				"<leader>?",
