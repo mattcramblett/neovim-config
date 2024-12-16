@@ -8,40 +8,48 @@ return {
 	{
 		"williamboman/mason-lspconfig.nvim",
 		lazy = false,
-		config = function()
-			require("mason-lspconfig").setup({
-				auto_install = true,
-				ensure_installed = { "lua_ls", "ts_ls", "ruby_lsp", "kotlin_language_server", "tailwindcss", "zls" },
-			})
-		end,
 	},
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
+			local mason_lspconfig = require("mason-lspconfig")
+
+			local servers = {
+				ruby_lsp = {
+					-- https://shopify.github.io/ruby-lsp/editors.html#lazyvim-lsp
+					mason = false,
+					cmd = { vim.fn.expand("~/.asdf/shims/ruby-lsp") },
+				},
+				ts_ls = {},
+				kotlin_language_server = {
+					filetypes = { "kotlin" },
+					root_dir = require("lspconfig").util.root_pattern("gradlew", ".git"),
+				},
+				tailwindcss = {},
+				zls = {},
+			}
+
+      -- Build list of servers to auto install
+			local server_keys = vim.tbl_keys(servers)
+			local install_list = vim.tbl_filter(function(key)
+				return servers[key].mason == true or servers[key].mason == nil
+			end, server_keys)
+      -- setup and auto install the required servers
+			mason_lspconfig.setup({
+				auto_install = true,
+				ensure_installed = install_list,
+			})
+
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-			local lspconfig = require("lspconfig")
-
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-			})
-
-			lspconfig.ts_ls.setup({
-				capabilities = capabilities,
-			})
-
-			lspconfig.ruby_lsp.setup({
-				capabilities = capabilities,
-			})
-
-			lspconfig.zls.setup({ -- zig
-				capabilities = capabilities,
-			})
-
-			lspconfig.kotlin_language_server.setup({
-				capabilities = capabilities,
-				filetypes = { "kotlin" },
-				root_dir = require("lspconfig").util.root_pattern("gradlew", ".git"),
+			mason_lspconfig.setup_handlers({
+				function(server_name)
+					require("lspconfig")[server_name].setup({
+						capabilities = capabilities,
+						settings = servers[server_name],
+						filetypes = (servers[server_name] or {}).filetypes,
+					})
+				end,
 			})
 
 			vim.keymap.set("n", "M", vim.diagnostic.open_float, { desc = "Diagnostics - open float window" })
