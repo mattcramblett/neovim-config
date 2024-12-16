@@ -42,6 +42,13 @@ return {
 
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+      -- setup ruby-lsp since it's not using Mason
+      require("lspconfig").ruby_lsp.setup({
+        capabilities = capabilities,
+        settings = servers.ruby_lsp,
+        filetypes = { "ruby" },
+      })
+
 			mason_lspconfig.setup_handlers({
 				function(server_name)
 					require("lspconfig")[server_name].setup({
