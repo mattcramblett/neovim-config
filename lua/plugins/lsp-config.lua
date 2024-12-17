@@ -22,8 +22,8 @@ return {
 				},
 				ts_ls = {},
 				kotlin_language_server = {
-					filetypes = { "kotlin" },
-					root_dir = require("lspconfig").util.root_pattern("gradlew", ".git"),
+					-- filetypes = { "kotlin" },
+					-- root_dir = require("lspconfig").util.root_pattern("gradlew", ".git"),
 				},
 				tailwindcss = {},
 				zls = {},
