@@ -30,12 +30,6 @@ return {
 			"--cache", -- attempt to improve performance
 		}
 
-    local ktlint = lint.linters.ktlint
-    ktlint.args = {
-      '--indent_size',
-      '2',
-    }
-
 		-- Run linting on save
 		vim.api.nvim_create_autocmd({ "BufRead", "BufWritePost" }, {
 			group = lint_augroup,
