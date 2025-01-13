@@ -27,14 +27,23 @@ return {
 				},
 				tailwindcss = {},
 				zls = {},
+				vacuum = {},
 			}
 
-      -- Build list of servers to auto install
+			-- Add filetypes for Open API specs, since they aren't detected automatically:
+			vim.filetype.add({
+				pattern = {
+					["openapi.*%.ya?ml"] = "yaml.openapi",
+					["openapi.*%.json"] = "json.openapi",
+				},
+			})
+
+			-- Build list of servers to auto install
 			local server_keys = vim.tbl_keys(servers)
 			local install_list = vim.tbl_filter(function(key)
 				return servers[key].mason == true or servers[key].mason == nil
 			end, server_keys)
-      -- setup and auto install the required servers
+			-- setup and auto install the required servers
 			mason_lspconfig.setup({
 				auto_install = true,
 				ensure_installed = install_list,
@@ -42,12 +51,12 @@ return {
 
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      -- setup ruby-lsp since it's not using Mason
-      require("lspconfig").ruby_lsp.setup({
-        capabilities = capabilities,
-        settings = servers.ruby_lsp,
-        filetypes = { "ruby" },
-      })
+			-- setup ruby-lsp since it's not using Mason
+			require("lspconfig").ruby_lsp.setup({
+				capabilities = capabilities,
+				settings = servers.ruby_lsp,
+				filetypes = { "ruby" },
+			})
 
 			mason_lspconfig.setup_handlers({
 				function(server_name)
