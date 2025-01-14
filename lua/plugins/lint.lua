@@ -7,9 +7,9 @@ return {
 		lint.linters_by_ft = {
 			ruby = { "rubocop" },
 			kotlin = { "ktlint" },
-			typescript = { "eslint_d", "eslint" },
+			-- typescript = { "eslint_d", "eslint" }, -- covered by typescript-language-server
 			javascript = { "eslint_d", "eslint" },
-			typescriptreact = { "eslint_d", "eslint" },
+			-- typescriptreact = { "eslint_d", "eslint" }, -- covered by typescript-language-server
 			javascriptreact = { "eslint_d", "eslint" },
 			html = { "htmlhint" },
 			css = { "stylelint" },
