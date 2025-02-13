@@ -19,6 +19,7 @@ return {
 				ruby = { "rubocop" },
 				kotlin = { "ktlint" },
 				java = { "google-java-format" },
+        go = { "gofmt" },
 				rust = { "rustfmt", lsp_format = "fallback" },
 				typescript = { "prettier" },
 				typescriptreact = { "prettier" },

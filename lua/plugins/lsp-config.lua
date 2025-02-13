@@ -25,6 +25,7 @@ return {
 					-- filetypes = { "kotlin" },
 					-- root_dir = require("lspconfig").util.root_pattern("gradlew", ".git"),
 				},
+        gopls = {},
 				tailwindcss = {},
 				zls = {},
 				vacuum = {},
