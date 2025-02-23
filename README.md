@@ -23,7 +23,7 @@ git clone https://github.com/mattcramblett/neovim-config.git ~/.config/nvim
         colorArg: always
         pager: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
     ```
-- Terminal background color to match Neovim color scheme: `#182130`
+- Terminal background color to match Neovim color scheme: `#020a1a`
 
 ## iTerm
 - Profiles (default) -> Keys -> Left/Right option key -> Esc+
