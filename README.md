@@ -40,7 +40,7 @@ leader: `<space>`
 | Find file            | `<leader>o`   |
 | Live Grep Words      | `<leader>/`   |
 | Live Grep Regex      | `<leader>s`   |
-| buffers              | `,`           |
+| Buffers              | `,`           |
 | File Tree            | `<leader>e`   |
 | Format File          | `<leader>ff`  |
 | Prev. buffer         | `H`           |
@@ -51,6 +51,7 @@ leader: `<space>`
 | Git reset hunk       | `<leader<gr>` |
 | git copy link        | `<leader>gy`  |
 | git open link        | `<leader>gY`  |
+| git diff branch      | `<leader>gd`  |
 
 ## Terminal
 Opening a terminal inside neovim
