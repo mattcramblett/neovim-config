@@ -36,7 +36,7 @@ return {
 				},
 				pickers = {
 					buffers = {
-            theme = "ivy",
+						theme = "ivy",
 						show_all_buffers = true,
 						sort_lastused = true,
 						previewer = true,
@@ -47,7 +47,7 @@ return {
 						},
 					},
 					find_files = {
-            theme = "ivy",
+						theme = "ivy",
 						-- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
 						-- `-i` for case-insensitive
 						-- `-F` == `--fixed-strings`, meaning no regex and literal strings
@@ -68,7 +68,7 @@ return {
 
 			require("telescope").load_extension("fzf")
 			require("telescope").load_extension("ui-select")
-      require("config.telescope.multigrep").setup()
+			require("config.telescope.multigrep").setup()
 
 			vim.keymap.set("n", "<leader>o", builtin.find_files, { desc = "Find files" }) -- search for file by name
 			vim.keymap.set(
@@ -81,12 +81,12 @@ return {
 
 			vim.keymap.set("n", ",", builtin.buffers, { desc = "Telescope buffers" })
 
-      -- Quickfix
-      vim.keymap.set("n", "<M-j>", "<cmd>cnext<CR>", { desc = "qfix next" })
-      vim.keymap.set("n", "<M-k>", "<cmd>cprev<CR>", { desc = "qfix prev" })
-      vim.keymap.set("n", "<M-c>", "<cmd>cclose<CR>", { desc = "qfix close" })
-      vim.keymap.set("n", "<M-o>", "<cmd>copen<CR>", { desc = "qfix open" })
-      -- :cdo s/find/replace/gc will find and replace over every item in the quickfix list
+			-- Quickfix
+			vim.keymap.set("n", "<M-j>", "<cmd>cnext<CR>", { desc = "qfix next" })
+			vim.keymap.set("n", "<M-k>", "<cmd>cprev<CR>", { desc = "qfix prev" })
+			vim.keymap.set("n", "<M-c>", "<cmd>cclose<CR>", { desc = "qfix close" })
+			vim.keymap.set("n", "<M-o>", "<cmd>copen<CR>", { desc = "qfix open" })
+			-- :cdo s/find/replace/gc will find and replace over every item in the quickfix list
 
 			-- Quick searches
 			vim.keymap.set("n", "gs", 'yiw/<c-r>"<cr>', { desc = "[G]o to [S]earch within current file" })
@@ -94,6 +94,32 @@ return {
 			vim.keymap.set("n", "go", function()
 				builtin.find_files({ default_text = vim.fn.expand("<cword>") })
 			end, { desc = "[G]o to [O]pen file (search files with word)" })
+		end,
+	},
+	{
+		"axkirillov/easypick.nvim",
+		config = function()
+      -- Setup pickers with arbitray commands
+			local get_default_branch = "git remote show origin | grep 'HEAD branch' | cut -d' ' -f5"
+			local base_branch = vim.fn.system(get_default_branch) or "main"
+			local easypick = require("easypick")
+			easypick.setup({
+        pickers = {
+          -- diff current branch with base_branch and show files that changed with respective diffs in preview
+          {
+            name = "branch_changes",
+            command = "git diff --name-only $(git merge-base HEAD " .. base_branch .. " )",
+            previewer = easypick.previewers.branch_diff({ base_branch = base_branch }),
+          },
+        }
+			})
+
+			vim.keymap.set(
+				"n",
+				"<leader>gd",
+				"<cmd>:Easypick branch_changes<CR>",
+				{ desc = "[G]it [D]iff changes on this branch" }
+			)
 		end,
 	},
 }
