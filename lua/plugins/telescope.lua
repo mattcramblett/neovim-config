@@ -116,9 +116,9 @@ return {
 
 			vim.keymap.set(
 				"n",
-				"<leader>gd",
+				".",
 				"<cmd>:Easypick branch_changes<CR>",
-				{ desc = "[G]it [D]iff changes on this branch" }
+				{ desc = "Changed files on branch" }
 			)
 		end,
 	},
