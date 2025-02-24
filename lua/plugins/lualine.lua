@@ -1,9 +1,13 @@
 return {
 	"nvim-lualine/lualine.nvim",
 	config = function()
+    local theme = require("lualine.themes.onedark")
+    theme.normal.b.bg = '#05183d'
+    theme.normal.c.bg = '#020a1a'
+
 		require("lualine").setup({
 			options = {
-				theme = "onedark",
+				theme = theme,
 			},
 			sections = {
 				lualine_a = {
