@@ -89,7 +89,6 @@ return {
 			-- :cdo s/find/replace/gc will find and replace over every item in the quickfix list
 
 			-- Quick searches
-			vim.keymap.set("n", "gs", 'yiw/<c-r>"<cr>', { desc = "[G]o to [S]earch within current file" })
 			vim.keymap.set("n", "gS", builtin.grep_string, { desc = "[G]o to [S]earch" })
 			vim.keymap.set("n", "go", function()
 				builtin.find_files({ default_text = vim.fn.expand("<cword>") })
