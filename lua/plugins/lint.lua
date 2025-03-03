@@ -8,9 +8,9 @@ return {
 			ruby = { "rubocop" },
 			kotlin = { "ktlint" },
 			-- typescript = { "eslint_d", "eslint" }, -- covered by typescript-language-server
-			javascript = { "eslint_d", "eslint" },
+			javascript = { "eslint_d" },
 			-- typescriptreact = { "eslint_d", "eslint" }, -- covered by typescript-language-server
-			javascriptreact = { "eslint_d", "eslint" },
+			javascriptreact = { "eslint_d" },
 			html = { "htmlhint" },
 			css = { "stylelint" },
 			scss = { "stylelint" },
