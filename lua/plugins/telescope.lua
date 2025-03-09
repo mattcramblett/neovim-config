@@ -107,7 +107,7 @@ return {
           -- diff current branch with base_branch and show files that changed with respective diffs in preview
           {
             name = "branch_changes",
-            command = "git diff --name-only $(git merge-base HEAD " .. base_branch .. " )",
+            command = "git diff --name-only $(git merge-base HEAD " .. base_branch .. " ) && git ls-files --others --exclude-standard",
             previewer = easypick.previewers.branch_diff({ base_branch = base_branch }),
           },
         }
