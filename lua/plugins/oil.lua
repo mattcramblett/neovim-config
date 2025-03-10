@@ -13,7 +13,12 @@ return {
         ["<CR>"] = "actions.select",
         ["<C-v>"] = { "actions.select", opts = { vertical = true } },
         ["<C-x>"] = { "actions.select", opts = { horizontal = true } },
-        ["<C-p>"] = "actions.preview",
+        ['<C-p>'] = {
+          callback = function()
+            local oil = require 'oil'
+            oil.open_preview { vertical = true, split = 'botright' }
+          end,
+        },
         ["<C-c>"] = { "actions.close", mode = "n" },
         ["<C-l>"] = "actions.refresh",
         ["-"] = { "actions.parent", mode = "n" },
