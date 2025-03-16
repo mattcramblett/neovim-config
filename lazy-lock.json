@@ -21,6 +21,7 @@
   "neotest-gradle": { "branch": "main", "commit": "bb4159369377083c30153018a26f1499418b8b8d" },
   "neotest-jest": { "branch": "main", "commit": "514fd4eae7da15fd409133086bb8e029b65ac43f" },
   "neotest-rspec": { "branch": "main", "commit": "f8c91edc5dd87ca467a624652f365ac217d7cc1c" },
+  "no-neck-pain.nvim": { "branch": "main", "commit": "53c8ef094c86e8897be2dcce0259d35914f6cdc0" },
   "nui.nvim": { "branch": "main", "commit": "53e907ffe5eedebdca1cd503b00aa8692068ca46" },
   "nvim-cmp": { "branch": "main", "commit": "5a11682453ac6b13dbf32cd403da4ee9c07ef1c3" },
   "nvim-dap": { "branch": "master", "commit": "6e0e8ab4d8ed520076971465a4388dfe54a91d83" },
