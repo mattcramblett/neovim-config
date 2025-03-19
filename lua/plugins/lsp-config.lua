@@ -20,6 +20,7 @@ return {
 					mason = false,
 					cmd = { vim.fn.expand("~/.asdf/shims/ruby-lsp") },
 				},
+        sorbet = {},
 				ts_ls = {},
 				kotlin_language_server = {
 					-- filetypes = { "kotlin" },
