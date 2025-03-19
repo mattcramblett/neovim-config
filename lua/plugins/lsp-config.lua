@@ -52,13 +52,6 @@ return {
 
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-			-- setup ruby-lsp since it's not using Mason
-			require("lspconfig").ruby_lsp.setup({
-				capabilities = capabilities,
-				settings = servers.ruby_lsp,
-				filetypes = { "ruby" },
-			})
-
 			mason_lspconfig.setup_handlers({
 				function(server_name)
 					require("lspconfig")[server_name].setup({
@@ -67,6 +60,15 @@ return {
 						filetypes = (servers[server_name] or {}).filetypes,
 					})
 				end,
+			})
+
+			-- setup ruby-lsp since it's not using Mason
+			require("lspconfig").ruby_lsp.setup({
+				capabilities = capabilities,
+				settings = servers.ruby_lsp,
+        init_options = {
+          filetypes = { "ruby" },
+        }
 			})
 
 			vim.keymap.set("n", "M", vim.diagnostic.open_float, { desc = "Diagnostics - open float window" })
