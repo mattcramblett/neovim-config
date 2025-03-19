@@ -12,6 +12,7 @@ git clone https://github.com/mattcramblett/neovim-config.git ~/.config/nvim
   - Ruby LSP `gem install ruby-lsp`
   - Watchman `brew install watchman` (used by the Sorbet LSP, which ruby-lsp uses in Sorbet projects)
   - Rubocop Rspec `gem install rubocop-rspec` (helps linting performance in rspec files)
+  - (may need to run `asdf reshim ruby` if ruby-lsp crashes)
 - [Git Delta](https://github.com/dandavison/delta) - pretty git diffs
   - Follow instructions in repo:
   - `brew install git-delta`
