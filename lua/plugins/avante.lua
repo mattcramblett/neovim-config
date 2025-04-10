@@ -48,23 +48,24 @@ if vim.env.OPENAI_API_KEY then
 				},
 			},
 		},
-		config = function()
-			local bedrock_util = require("util.aws-bedrock")
-			vim.api.nvim_create_user_command("Bedrock", bedrock_util.update_bedrock_keys, {})
-      bedrock_util.try_to_set_bedrock_keys()
-
-      -- System should be using cURL version 8.12 or above
-			require("avante").setup({
-				provider = "bedrock",
-				bedrock = {
-          model = "us.anthropic.claude-3-7-sonnet-20250219-v1:0",
-					timeout = 60000,
-					temperature = 0,
-					max_tokens = 16384,
-					reasoning_effort = "medium",
-				},
-			})
-		end,
+    -- Uncomment to use Bedrock/Claude
+		-- config = function()
+		-- 	local bedrock_util = require("util.aws-bedrock")
+		-- 	vim.api.nvim_create_user_command("Bedrock", bedrock_util.update_bedrock_keys, {})
+		--     bedrock_util.try_to_set_bedrock_keys()
+		--
+		--     -- System should be using cURL version 8.12 or above
+		-- 	require("avante").setup({
+		-- 		provider = "bedrock",
+		-- 		bedrock = {
+		--         model = "us.anthropic.claude-3-7-sonnet-20250219-v1:0",
+		-- 			timeout = 60000,
+		-- 			temperature = 0,
+		-- 			max_tokens = 16384,
+		-- 			reasoning_effort = "medium",
+		-- 		},
+		-- 	})
+		-- end,
 	}
 else
 	return {}
