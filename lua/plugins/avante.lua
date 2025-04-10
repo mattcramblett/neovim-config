@@ -5,6 +5,7 @@ if vim.env.OPENAI_API_KEY then
 		event = "VeryLazy",
 		version = false,
 		opts = {
+      -- NOTE: These opts only take effect if you remove the `config` function
 			provider = "openai",
 			openai = {
 				endpoint = "https://api.openai.com/v1",
@@ -50,10 +51,13 @@ if vim.env.OPENAI_API_KEY then
 		config = function()
 			local bedrock_util = require("util.aws-bedrock")
 			vim.api.nvim_create_user_command("Bedrock", bedrock_util.update_bedrock_keys, {})
+      bedrock_util.try_to_set_bedrock_keys()
+
+      -- System should be using cURL version 8.12 or above
 			require("avante").setup({
 				provider = "bedrock",
 				bedrock = {
-					model = "anthropic.claude-3-7-sonnet-20250219-v1:0",
+					model = "arn:aws:bedrock:us-east-2:372645068752:inference-profile/us.anthropic.claude-3-5-haiku-20241022-v1:0",
 					timeout = 60000,
 					temperature = 0,
 					max_tokens = 16384,
