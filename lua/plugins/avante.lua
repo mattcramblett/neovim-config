@@ -1,10 +1,10 @@
+-- Keying off of this for now. If I don't have this set then I'm not using Avante, even though I'm using bedrock
 if vim.env.OPENAI_API_KEY then
 	return {
 		"yetone/avante.nvim",
 		event = "VeryLazy",
 		version = false,
 		opts = {
-      -- export BEDROCK_KEYS=aws_access_key_id,aws_secret_access_key,aws_region[,aws_session_token]
 			provider = "openai",
 			openai = {
 				endpoint = "https://api.openai.com/v1",
@@ -26,7 +26,7 @@ if vim.env.OPENAI_API_KEY then
 			"echasnovski/mini.pick", -- for file_selector provider mini.pick
 			"nvim-telescope/telescope.nvim", -- for file_selector provider telescope
 			"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
-			"ibhagwan/fzf-lua", -- for file_selector provider fzf
+			"ibhagwan/fzf-lua", -- for file_selector provider fzx-api-key header is requiredf
 			"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
 			"zbirenbaum/copilot.lua", -- for providers='copilot'
 			{
@@ -47,6 +47,20 @@ if vim.env.OPENAI_API_KEY then
 				},
 			},
 		},
+		config = function()
+			local bedrock_util = require("util.aws-bedrock")
+			vim.api.nvim_create_user_command("Bedrock", bedrock_util.update_bedrock_keys, {})
+			require("avante").setup({
+				provider = "bedrock",
+				bedrock = {
+					model = "anthropic.claude-3-7-sonnet-20250219-v1:0",
+					timeout = 60000,
+					temperature = 0,
+					max_tokens = 16384,
+					reasoning_effort = "medium",
+				},
+			})
+		end,
 	}
 else
 	return {}
