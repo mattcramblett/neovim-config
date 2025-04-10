@@ -57,7 +57,7 @@ if vim.env.OPENAI_API_KEY then
 			require("avante").setup({
 				provider = "bedrock",
 				bedrock = {
-					model = "arn:aws:bedrock:us-east-2:372645068752:inference-profile/us.anthropic.claude-3-5-haiku-20241022-v1:0",
+          model = "us.anthropic.claude-3-7-sonnet-20250219-v1:0",
 					timeout = 60000,
 					temperature = 0,
 					max_tokens = 16384,
