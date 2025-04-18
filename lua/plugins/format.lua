@@ -19,17 +19,33 @@ return {
 				ruby = { "rubocop" },
 				kotlin = { "ktlint" },
 				java = { "google-java-format" },
-        go = { "gofmt" },
+				go = { "gofmt" },
 				rust = { "rustfmt", lsp_format = "fallback" },
 				typescript = { "prettier" },
 				typescriptreact = { "prettier" },
 				javascript = { "prettier" },
 				javascriptreact = { "prettier" },
-        markdown = { "deno_fmt" },
+				markdown = { "deno_fmt" },
 				["_"] = { "trim_whitespace" }, -- filetype with no formatter
 			},
 			default_format_opts = {
 				lsp_format = "fallback",
+			},
+			formatters = {
+				rubocop = {
+					command = "bundle",
+					args = {
+						"exec",
+						"rubocop",
+						"-a",
+						"-f",
+						"quiet",
+						"--stderr",
+						"--stdin",
+						"$FILENAME",
+					},
+					stdin = true,
+				},
 			},
 		})
 	end,
