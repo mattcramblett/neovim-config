@@ -20,13 +20,13 @@ return {
 					mason = false,
 					cmd = { vim.fn.expand("~/.asdf/shims/ruby-lsp") },
 				},
-        sorbet = {},
+				sorbet = {},
 				ts_ls = {},
 				kotlin_language_server = {
 					-- filetypes = { "kotlin" },
 					-- root_dir = require("lspconfig").util.root_pattern("gradlew", ".git"),
 				},
-        gopls = {},
+				gopls = {},
 				tailwindcss = {},
 				zls = {},
 				vacuum = {},
@@ -67,9 +67,17 @@ return {
 			require("lspconfig").ruby_lsp.setup({
 				capabilities = capabilities,
 				settings = servers.ruby_lsp,
-        init_options = {
-          filetypes = { "ruby" },
-        }
+				init_options = {
+					filetypes = { "ruby" },
+				},
+			})
+			-- Make sure rubocop does not try to run as a language server
+			require("lspconfig").rubocop.setup({
+				cmd = { "echo", "RuboCop LSP disabled" },
+				autostart = false,
+				on_init = function(client)
+					client.stop()
+				end,
 			})
 
 			vim.keymap.set("n", "M", vim.diagnostic.open_float, { desc = "Diagnostics - open float window" })
