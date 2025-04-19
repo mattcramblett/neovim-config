@@ -15,6 +15,9 @@ if vim.env.OPENAI_API_KEY then
 				max_tokens = 16384, -- Increase this to include reasoning tokens (for reasoning models)
 				reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
 			},
+      behavior = {
+        enable_token_counting = false,
+      }
 		},
 		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
 		build = "make",
