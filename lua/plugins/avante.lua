@@ -9,7 +9,7 @@ if vim.env.OPENAI_API_KEY then
 			provider = "openai",
 			openai = {
 				endpoint = "https://api.openai.com/v1",
-				model = "gpt-4.1-mini",
+				model = "o3-mini",
 				timeout = 60000, -- Timeout in milliseconds, increase this for reasoning models
 				temperature = 0,
 				max_completion_tokens = 16384, -- Increase this to include reasoning tokens (for reasoning models)
