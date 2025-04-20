@@ -89,3 +89,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
+-- views can only be fully collapsed with the global statusline
+vim.opt.laststatus = 3

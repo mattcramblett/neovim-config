@@ -5,19 +5,27 @@ if vim.env.OPENAI_API_KEY then
 		event = "VeryLazy",
 		version = false,
 		opts = {
-      -- NOTE: These opts only take effect if you remove the `config` function
+			-- NOTE: These opts only take effect if you remove the `config` function
 			provider = "openai",
 			openai = {
 				endpoint = "https://api.openai.com/v1",
-				model = "gpt-4o",
+				model = "gpt-4.1-mini",
 				timeout = 60000, -- Timeout in milliseconds, increase this for reasoning models
 				temperature = 0,
-				max_tokens = 16384, -- Increase this to include reasoning tokens (for reasoning models)
+				max_completion_tokens = 16384, -- Increase this to include reasoning tokens (for reasoning models)
 				reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
 			},
-      behavior = {
-        enable_token_counting = false,
-      }
+			behavior = {
+				enable_token_counting = false,
+				-- auto_suggestions = false, -- Experimental stage
+				-- auto_set_highlight_group = true,
+				-- auto_set_keymaps = true,
+				-- auto_apply_diff_after_generation = false,
+				-- support_paste_from_clipboard = false,
+				-- minimize_diff = true, -- Whether to remove unchanged lines when applying a code block
+				-- enable_cursor_planning_mode = false, -- Whether to enable Cursor Planning Mode. Default to false.
+				-- enable_claude_text_editor_tool_mode = false, -- Whether to enable Claude Text Editor Tool
+			},
 		},
 		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
 		build = "make",
@@ -51,7 +59,7 @@ if vim.env.OPENAI_API_KEY then
 				},
 			},
 		},
-    -- Uncomment to use Bedrock/Claude
+		-- Uncomment to use Bedrock/Claude
 		-- config = function()
 		-- 	local bedrock_util = require("util.aws-bedrock")
 		-- 	vim.api.nvim_create_user_command("Bedrock", bedrock_util.update_bedrock_keys, {})
