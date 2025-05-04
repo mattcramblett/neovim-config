@@ -1,5 +1,5 @@
--- Keying off of this for now. If I don't have this set then I'm not using Avante, even though I'm using bedrock
-if vim.env.OPENAI_API_KEY then
+-- Disabling Avante for now.
+if false and vim.env.OPENAI_API_KEY then
 	return {
 		"yetone/avante.nvim",
 		event = "VeryLazy",
