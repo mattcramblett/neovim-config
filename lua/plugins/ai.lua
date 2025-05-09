@@ -1,4 +1,5 @@
-if not vim.env.OPENAI_API_KEY then
+-- disabling for now
+if true then
 	return {}
 end
 
