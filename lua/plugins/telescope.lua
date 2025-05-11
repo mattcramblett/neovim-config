@@ -83,6 +83,16 @@ return {
 			vim.keymap.set("n", "<leader>l", builtin.lsp_document_symbols, { desc = "LSP symbols" })
 			vim.keymap.set("n", "<leader>cs", builtin.colorscheme, { desc = "Colorscheme" })
 
+      -- Quickfix
+			vim.keymap.set("n", "<leader>qq", builtin.quickfix, { desc = "Quickfix" })
+			vim.keymap.set("n", "<leader>qh", builtin.quickfixhistory, { desc = "Quickfix history" })
+
+      -- Marks
+			vim.keymap.set("n", "<leader>m", builtin.marks, { desc = "Marks" })
+
+      -- Keympaps
+			vim.keymap.set("n", "<leader>k", builtin.keymaps, { desc = "Keymaps" })
+
 			-- Quick searches
 			vim.keymap.set("n", "gS", builtin.grep_string, { desc = "[G]o to [S]earch" })
 			vim.keymap.set("n", "go", function()
