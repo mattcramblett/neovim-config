@@ -27,6 +27,10 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = tr
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
 
+-- Re-center the window when jumping up or down
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+
 -- Resize window height using alt arrow keys
 vim.keymap.set("n", "<M-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
 vim.keymap.set("n", "<M-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
@@ -89,6 +93,13 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
+-- Quickfix
+vim.keymap.set("n", "<M-j>", "<cmd>cnext<CR>", { desc = "qfix next" })
+vim.keymap.set("n", "<M-k>", "<cmd>cprev<CR>", { desc = "qfix prev" })
+vim.keymap.set("n", "<M-c>", "<cmd>cclose<CR>", { desc = "qfix close" })
+vim.keymap.set("n", "<M-o>", "<cmd>copen<CR>", { desc = "qfix open" })
+-- :cdo s/find/replace/gc will find and replace over every item in the quickfix list
 
 -- views can only be fully collapsed with the global statusline
 vim.opt.laststatus = 3
