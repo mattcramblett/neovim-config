@@ -80,6 +80,8 @@ return {
 			vim.keymap.set("n", "<leader>h", builtin.help_tags, { desc = "Search [H]elp" }) -- search help docs
 
 			vim.keymap.set("n", ",", builtin.buffers, { desc = "Telescope buffers" })
+			vim.keymap.set("n", "<leader>l", builtin.lsp_document_symbols, { desc = "LSP symbols" })
+			vim.keymap.set("n", "<leader>cs", builtin.colorscheme, { desc = "Colorscheme" })
 
 			-- Quick searches
 			vim.keymap.set("n", "gS", builtin.grep_string, { desc = "[G]o to [S]earch" })
