@@ -130,6 +130,13 @@ return {
 			desc = "Show [T]est [O]utput",
 		},
 		{
+			"<leader>tO",
+			function()
+				require("neotest").output_panel.toggle()
+			end,
+			desc = "Show [T]est [O]utput Panel",
+		},
+		{
 			"<leader>tts",
 			function()
 				require("neotest").summary.toggle()
