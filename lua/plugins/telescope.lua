@@ -34,6 +34,13 @@ return {
 						case_mode = "ignore_case", -- "smart_case", "ignore_case" or "respect_case"
 					},
 				},
+				defaults = {
+					mappings = {
+						i = {
+							["<C-y>"] = require("telescope.actions.layout").toggle_preview,
+						},
+					},
+				},
 				pickers = {
 					buffers = {
 						theme = "ivy",
