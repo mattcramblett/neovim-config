@@ -36,9 +36,6 @@ return {
 						prev_prompt_history = "<up>", -- Navigate to previous prompt in history
 						next_prompt_history = "<down>", -- Navigate to next prompt in history
 					},
-          providers = {
-            openai = "o4-mini"
-          }
 				},
 			})
 		end,
