@@ -50,7 +50,7 @@ leader: `<space>`
 | Prev. buffer         | `H`           |
 | Next buffer          | `L`           |
 | Delete buffer        | `<leader>bd`  |
-| LazyGit              | `<leader>gg`  |
+| LazyGit              | `<leader>G`   |
 | Git preview          | `<leader>gp`  |
 | Git reset hunk       | `<leader<gr>` |
 | git copy link        | `<leader>gy`  |
