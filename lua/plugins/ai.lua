@@ -57,7 +57,12 @@ return {
 		panel = { enabled = false },
 		config = function()
 			-- run :Copilot auth
-			require("copilot").setup({})
+			require("copilot").setup({
+				server_opts_overrides = {
+					-- Set the path to your Node.js v20 or higher executable
+					nodeCommand = "~/.asdf/installs/nodejs/22.12.0/bin/node",
+				},
+			})
 		end,
 	},
 	{
