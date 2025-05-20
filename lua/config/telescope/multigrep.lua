@@ -31,9 +31,13 @@ local live_multigrep = function (opts)
       end
 
       -- Allow input of additional globs to filter files, after search + double space.
-      if pieces[2] then
-        table.insert(args, "--glob")
-        table.insert(args, pieces[2])
+      if pieces[2] and pieces[2] ~= "" then
+        -- split the first part into multiple patterns and add each with -e
+        local patterns = vim.split(pieces[2], "%s+")
+        for _, pat in ipairs(patterns) do
+          table.insert(args, "--glob")
+          table.insert(args, pat)
+        end
       end
 
       return vim.tbl_flatten {
