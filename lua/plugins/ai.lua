@@ -21,7 +21,7 @@ return {
 						diff_open = "<leader>gd", -- Opens a diff tab of a modified file since the last goose prompt
 						diff_next = "<leader>g]", -- Navigate to next file diff
 						diff_prev = "<leader>g[", -- Navigate to previous file diff
-						diff_close = "<leader>gc", -- Close diff view tab and return to normal editing
+						-- diff_close = "<leader>gc", -- Close diff view tab and return to normal editing
 						diff_revert_all = "<leader>gra", -- Revert all file changes since the last goose prompt
 						diff_revert_this = "<leader>grt", -- Revert current file changes since the last goose prompt
 					},
