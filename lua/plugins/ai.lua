@@ -57,16 +57,16 @@ return {
 		panel = { enabled = false },
 		config = function()
 			-- run :Copilot auth
-			require("copilot").setup({
-				copilot_node_command = vim.fn.expand("$HOME") .. "/.asdf/installs/nodejs/22.12.0/bin/node",
-				keymap = {
-					jump_prev = "[[",
-					jump_next = "]]",
-					accept = "<Tab>",
-					refresh = "gR",
-					open = "<M-CR>",
-				},
-			})
+--		require("copilot").setup({
+--			copilot_node_command = vim.fn.expand("$HOME") .. "/.asdf/installs/nodejs/22.12.0/bin/node",
+--			keymap = {
+--				jump_prev = "[[",
+--				jump_next = "]]",
+--				accept = "<Tab>",
+--				refresh = "gR",
+--				open = "<M-CR>",
+--			},
+--		})
 		end,
 	},
 	{
