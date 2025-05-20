@@ -58,7 +58,7 @@ return {
 		config = function()
 			-- run :Copilot auth
 			require("copilot").setup({
-				copilot_node_command = "~/.asdf/installs/nodejs/22.12.0/bin/node",
+				copilot_node_command = vim.fn.expand("$HOME") .. "/.asdf/installs/nodejs/22.12.0/bin/node",
 				keymap = {
 					jump_prev = "[[",
 					jump_next = "]]",
