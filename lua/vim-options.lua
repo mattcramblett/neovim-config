@@ -106,3 +106,4 @@ vim.opt.laststatus = 3
 
 -- Keymap to yank filepath of the current buffer
 vim.keymap.set({ "n", "v" }, "<leader>yp", "<cmd>let @* = expand(\"%\")<CR>", { desc = "[Y]ank [P]ath of file (relative to root dir)" })
+vim.keymap.set({ "n", "v" }, "<leader>yP", "<cmd>let @* = expand('%:p')<CR>", { desc = "[Y]ank [P]ath of file (absolute path)" })
