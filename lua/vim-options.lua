@@ -103,3 +103,6 @@ vim.keymap.set("n", "<M-o>", "<cmd>copen<CR>", { desc = "qfix open" })
 
 -- views can only be fully collapsed with the global statusline
 vim.opt.laststatus = 3
+
+-- Keymap to yank filepath of the current buffer
+vim.keymap.set({ "n", "v" }, "<leader>yp", "<cmd>let @* = expand(\"%\")<CR>", { desc = "[Y]ank [P]ath of file (relative to root dir)" })
