@@ -47,7 +47,7 @@ return {
 			end, server_keys)
 			-- setup and auto install the required servers
 			mason_lspconfig.setup({
-				auto_install = true,
+        automatic_installation = true,
 				ensure_installed = install_list,
 			})
 
