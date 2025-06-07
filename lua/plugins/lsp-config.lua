@@ -83,7 +83,12 @@ return {
 			vim.keymap.set("n", "M", vim.diagnostic.open_float, { desc = "Diagnostics - open float window" })
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP Hover" })
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "[G]oto [D]efinition" })
-			vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references, { desc = "[G]oto [R]eferences" })
+			vim.keymap.set("n", "gr", function()
+        require("telescope.builtin").lsp_references({
+          prompt_title = "LSP References",
+          path_display = { "shorten" },
+        })
+        end, { desc = "[G]oto [R]eferences" })
 			vim.keymap.set(
 				"n",
 				"gI",
