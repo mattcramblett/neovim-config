@@ -1,5 +1,5 @@
 -- Disabling Avante for now.
-if vim.env.OPENAI_API_KEY then
+if false and vim.env.OPENAI_API_KEY then
 	return {
 		"yetone/avante.nvim",
 		event = "VeryLazy",
