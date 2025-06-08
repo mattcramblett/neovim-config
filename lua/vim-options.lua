@@ -52,32 +52,7 @@ vim.keymap.set("v", ">", ">gv")
 
 -- buffers
 local ui = require("util.ui")
-vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
-vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
-vim.keymap.set("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 vim.keymap.set("n", "<leader>bd", ui.bufremove, { desc = "Delete Buffer" })
-
--- git
--- lazygit: <leader>gg
-vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", { desc = "Git preview hunk" })
-vim.keymap.set("n", "<leader>gr", ":Gitsigns reset_hunk<CR>", { desc = "Git reset hunk" })
-
--- terminal
-vim.keymap.set(
-  "n",
-  "<leader>ft",
-  "<cmd>FloatermNew --height=0.9 --width=0.9<cr>",
-  { desc = "New Terminal (Project Root)" }
-)
-vim.keymap.set(
-  "n",
-  "<leader>fT",
-  "<cmd>FloatermNew --height=0.9 --width=0.9 --cwd=<buffer><cr>",
-  { desc = "New Terminal (Buffer Directory)" }
-)
-vim.keymap.set({ "n", "t" }, "<C-t>", "<cmd>FloatermToggle<cr>", { desc = "Toggle Terminal" })
-vim.keymap.set({ "t" }, "<C-[>", "<cmd>FloatermPrev<cr>", { desc = "Previous Terminal" })
-vim.keymap.set({ "t" }, "<C-]>", "<cmd>FloatermNext<cr>", { desc = "Next Terminal" })
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
@@ -104,7 +79,7 @@ vim.keymap.set("n", "<M-o>", "<cmd>copen<CR>", { desc = "qfix open" })
 -- views can only be fully collapsed with the global statusline
 vim.opt.laststatus = 3
 
--- Keymap to yank filepath of the current buffer
+-- Yank filepath of the current buffer
 vim.keymap.set({ "n", "v" }, "<leader>yp", "<cmd>let @* = expand(\"%\")<CR>", { desc = "[Y]ank [P]ath of file (relative to root dir)" })
 vim.keymap.set({ "n", "v" }, "<leader>yP", "<cmd>let @* = expand('%:p')<CR>", { desc = "[Y]ank [P]ath of file (absolute path)" })
 

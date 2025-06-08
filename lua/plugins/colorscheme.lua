@@ -21,14 +21,5 @@ return {
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
-		config = function()
-			require("catppuccin").setup({
-				color_overrides = {
-					mocha = {
-						base = "#020a1a",
-					},
-				},
-			})
-		end,
 	},
 }

@@ -13,6 +13,8 @@ return {
 					use_focus = true,
 				},
 			})
+      vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", { desc = "Git preview hunk" })
+      vim.keymap.set("n", "<leader>gr", ":Gitsigns reset_hunk<CR>", { desc = "Git reset hunk" })
 		end,
 	},
 	{
