@@ -15,7 +15,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("vim-options")
+require("lua.vim-options")
 require("lazy").setup("plugins")
-require("lsp-init")
+require("lua.lsp-init")
 
