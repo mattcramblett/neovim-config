@@ -5,7 +5,7 @@ return {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			-- vim.cmd.colorscheme("onedark")
+			vim.cmd.colorscheme("onedark")
 
 			require("onedark").setup({
 				style = "deep",
@@ -31,7 +31,7 @@ return {
 
       vim.g.tundra_biome = 'arctic' -- 'arctic' or 'jungle'
       vim.opt.background = 'dark'
-      vim.cmd('colorscheme tundra')
+      -- vim.cmd('colorscheme tundra')
     end
   }
 }
