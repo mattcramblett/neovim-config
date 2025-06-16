@@ -5,7 +5,7 @@ return {
 		lazy = false,
 		priority = 1000,
 		config = function()
-			vim.cmd.colorscheme("onedark")
+			-- vim.cmd.colorscheme("onedark")
 
 			require("onedark").setup({
 				style = "deep",
@@ -22,4 +22,16 @@ return {
 		"catppuccin/nvim",
 		name = "catppuccin",
 	},
+  {
+    "sam4llis/nvim-tundra",
+    config = function ()
+      require('nvim-tundra').setup({
+        transparent_background = true,
+      })
+
+      vim.g.tundra_biome = 'arctic' -- 'arctic' or 'jungle'
+      vim.opt.background = 'dark'
+      vim.cmd('colorscheme tundra')
+    end
+  }
 }
