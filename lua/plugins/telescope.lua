@@ -32,6 +32,8 @@ return {
 					fzf = {
 						-- fuzzy = false, -- only exact matching
 						case_mode = "ignore_case", -- "smart_case", "ignore_case" or "respect_case"
+            override_generic_sorter = true, -- use fzf for non-file pickers
+            override_file_sorter    = true, -- use fzf for file pickers too
 					},
 				},
 				defaults = {
@@ -47,6 +49,9 @@ return {
 						show_all_buffers = true,
 						sort_lastused = true,
 						previewer = true,
+            sorter = require("telescope").extensions.fzf.native_fzf_sorter({
+              case_mode = "ignore_case",   -- or "smart_case"/"respect_case"
+            }),
 						mappings = {
 							i = {
 								["<c-d>"] = "delete_buffer",
