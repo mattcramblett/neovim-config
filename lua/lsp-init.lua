@@ -46,5 +46,18 @@ vim.api.nvim_create_autocmd('LspAttach', {
     if client:supports_method('textDocument/completion') then
       vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = false })
     end
+
+    -- Disable Sorbet if it tries to attach to a non-sorbet project
+    if client.name ~= "sorbet" then
+      print("attaching " .. client.name)
+      return
+    end
+    -- look for "sorbet/config" upward from the file on disk
+    local root = vim.fs.dirname(vim.fs.find({'sorbet/config'}, { upward = true })[1])
+    if not root then
+      print("Not a sorbet project, stopping Sorbet LSP client.")
+      vim.lsp.stop_client(client.id, { force = true })
+    end
   end,
 })
+
