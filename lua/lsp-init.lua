@@ -47,14 +47,24 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = false })
     end
 
-    -- Disable Sorbet if it tries to attach to a non-sorbet project
+    -- Below: sorbet compatibility with ruby-lsp
     if client.name ~= "sorbet" then
       return
     end
+
+    -- Disable sorbet if file is in a non-sorbet project
     -- look for "sorbet/config" upward from the file on disk
     local root = vim.fs.dirname(vim.fs.find({'sorbet/config'}, { upward = true })[1])
     if not root then
       vim.lsp.stop_client(client.id, { force = true })
+      return
+    end
+
+    -- Disable Sorbet if the first line has "# typed: false"
+    local first_line = vim.api.nvim_buf_get_lines(ev.buf, 0, 1, false)[1]
+    if first_line and first_line:match("#%s*typed:%s*false") then
+      vim.lsp.stop_client(client.id, { force = true })
+      return
     end
   end,
 })
