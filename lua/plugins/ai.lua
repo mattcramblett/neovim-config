@@ -52,47 +52,47 @@ return {
 			},
 		},
 	},
-	{
-		"zbirenbaum/copilot.lua",
-		cmd = "Copilot",
-		event = "InsertEnter",
-		suggestion = {
-			enabled = true,
-			auto_trigger = false,
-			keymap = {
-				accept = "<M-l>",
-				accept_word = false,
-				accept_line = false,
-				next = "<M-]>",
-				prev = "<M-[>",
-				dismiss = "<C-]>",
-			},
-		},
-		copilot_model = "",
-		panel = { enabled = false },
-		config = function()
-			-- run :Copilot auth
-			require("copilot").setup({
-				copilot_node_command = vim.fn.expand("$HOME") .. "/.asdf/installs/nodejs/22.12.0/bin/node",
-			})
-
-			-- Disable Copilot when Blink menu is open
-			vim.api.nvim_create_autocmd("User", {
-				pattern = "BlinkCmpMenuOpen",
-				callback = function()
-					vim.b.copilot_suggestion_hidden = true
-				end,
-			})
-
-			-- Re-enable when Blink menu closes
-			vim.api.nvim_create_autocmd("User", {
-				pattern = "BlinkCmpMenuClose",
-				callback = function()
-					vim.b.copilot_suggestion_hidden = false
-				end,
-			})
-		end,
-	},
+	-- {
+	-- 	"zbirenbaum/copilot.lua",
+	-- 	cmd = "Copilot",
+	-- 	event = "InsertEnter",
+	-- 	suggestion = {
+	-- 		enabled = true,
+	-- 		auto_trigger = false,
+	-- 		keymap = {
+	-- 			accept = "<M-l>",
+	-- 			accept_word = false,
+	-- 			accept_line = false,
+	-- 			next = "<M-]>",
+	-- 			prev = "<M-[>",
+	-- 			dismiss = "<C-]>",
+	-- 		},
+	-- 	},
+	-- 	copilot_model = "",
+	-- 	panel = { enabled = false },
+	-- 	config = function()
+	-- 		-- run :Copilot auth
+	-- 		require("copilot").setup({
+	-- 			copilot_node_command = vim.fn.expand("$HOME") .. "/.asdf/installs/nodejs/22.12.0/bin/node",
+	-- 		})
+	--
+	-- 		-- Disable Copilot when Blink menu is open
+	-- 		vim.api.nvim_create_autocmd("User", {
+	-- 			pattern = "BlinkCmpMenuOpen",
+	-- 			callback = function()
+	-- 				vim.b.copilot_suggestion_hidden = true
+	-- 			end,
+	-- 		})
+	--
+	-- 		-- Re-enable when Blink menu closes
+	-- 		vim.api.nvim_create_autocmd("User", {
+	-- 			pattern = "BlinkCmpMenuClose",
+	-- 			callback = function()
+	-- 				vim.b.copilot_suggestion_hidden = false
+	-- 			end,
+	-- 		})
+	-- 	end,
+	-- },
 	-- 	not working with blink
 	-- 	{
 	-- 		"zbirenbaum/copilot-cmp",

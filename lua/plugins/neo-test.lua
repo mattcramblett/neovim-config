@@ -45,24 +45,25 @@ return {
 				-- - "file"
 				-- - "test"
 				-- - "dir"
-				rspec_cmd = function(position_type)
+        rspec_cmd = { "bundle", "exec", "rspec" },
+				-- rspec_cmd = function(position_type)
 					-- ensure generated tests (ex: .each loops with an example) will fail past the first iteration if needed.
 					-- only do this when running an individual test because otherwise the whole file fails if one example fails.
-					if position_type == "test" then
-						return vim.tbl_flatten({
-							"bundle",
-							"exec",
-							"rspec",
-							"--fail-fast",
-						})
-					else
-						return vim.tbl_flatten({
-							"bundle",
-							"exec",
-							"rspec",
-						})
-					end
-				end,
+				-- 	if position_type == "test" then
+				-- 		return vim.tbl_flatten({
+				-- 			"bundle",
+				-- 			"exec",
+				-- 			"rspec",
+				-- 			"--fail-fast",
+				-- 		})
+				-- 	else
+				-- 		return vim.tbl_flatten({
+				-- 			"bundle",
+				-- 			"exec",
+				-- 			"rspec",
+				-- 		})
+				-- 	end
+				-- end,
 			}),
 			require("neotest-jest")({
 				-- jestCommand = "jest --passWithNoTests",
