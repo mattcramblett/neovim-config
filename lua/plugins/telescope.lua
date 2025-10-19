@@ -42,6 +42,9 @@ return {
 							["<C-y>"] = require("telescope.actions.layout").toggle_preview,
 						},
 					},
+          layout_config = {
+            horizontal = { preview_width = 0.5 },
+          },
 				},
 				pickers = {
 					buffers = {
@@ -95,14 +98,14 @@ return {
 			vim.keymap.set("n", "<leader>l", builtin.lsp_document_symbols, { desc = "LSP symbols" })
 			vim.keymap.set("n", "<leader>cs", builtin.colorscheme, { desc = "Colorscheme" })
 
-      -- Quickfix
+			-- Quickfix
 			vim.keymap.set("n", "<leader>qq", builtin.quickfix, { desc = "Quickfix" })
 			vim.keymap.set("n", "<leader>qh", builtin.quickfixhistory, { desc = "Quickfix history" })
 
-      -- Marks
+			-- Marks
 			vim.keymap.set("n", "<leader>m", builtin.marks, { desc = "Marks" })
 
-      -- Keympaps
+			-- Keymaps
 			vim.keymap.set("n", "<leader>k", builtin.keymaps, { desc = "Keymaps" })
 
 			-- Quick searches
@@ -112,30 +115,35 @@ return {
 			end, { desc = "[G]o to [O]pen file (search files with word)" })
 		end,
 	},
+  --
+  -- CUSTOM PICKERS
+  --
 	{
 		"axkirillov/easypick.nvim",
 		config = function()
-      -- Setup pickers with arbitray commands
+			-- Setup pickers with arbitray commands
 			local get_default_branch = "git remote show origin | grep 'HEAD branch' | cut -d' ' -f5"
 			local base_branch = vim.fn.system(get_default_branch) or "main"
 			local easypick = require("easypick")
+			local previewers = require("telescope.previewers")
 			easypick.setup({
-        pickers = {
-          -- diff current branch with base_branch and show files that changed with respective diffs in preview
-          {
-            name = "branch_changes",
-            command = "git diff --name-only $(git merge-base HEAD " .. base_branch .. " ) && git ls-files --others --exclude-standard",
-            previewer = easypick.previewers.branch_diff({ base_branch = base_branch }),
-          },
-        }
+				pickers = {
+					-- diff current branch with base_branch and show files that changed with respective diffs in preview
+					{
+						name = "branch_changes",
+						command = "git diff --name-only $(git merge-base HEAD " .. base_branch .. " ) && git ls-files --others --exclude-standard",
+						previewer = previewers.new_termopen_previewer({
+							get_command = function(entry)
+								-- entry.path will be the full path when using built-in file/git pickers
+								local filepath = entry.path or entry.value
+								return "git diff " .. base_branch .. " -- " .. filepath
+							end,
+						}),
+					},
+				},
 			})
 
-			vim.keymap.set(
-				"n",
-				".",
-				"<cmd>:Easypick branch_changes<CR>",
-				{ desc = "Changed files on branch" }
-			)
+			vim.keymap.set("n", ".", "<cmd>:Easypick branch_changes<CR>", { desc = "Changed files on branch" })
 		end,
 	},
 }
