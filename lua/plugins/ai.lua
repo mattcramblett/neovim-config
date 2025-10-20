@@ -38,7 +38,7 @@ return {
 					},
 				},
 				providers = {
-					openai = "o4-mini",
+					openai = "gpt-5-mini",
 				},
 			})
 		end,
