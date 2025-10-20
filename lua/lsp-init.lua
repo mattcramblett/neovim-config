@@ -10,7 +10,7 @@ local servers = {
 }
 
 local servers_to_install = vim.tbl_filter(function(server)
-	return server ~= "ruby-lsp"
+	return server ~= "ruby-lsp" and server ~= "sorbet"
 end, servers)
 
 local mason_lspconfig = require("mason-lspconfig")
