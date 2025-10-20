@@ -80,7 +80,15 @@ vim.keymap.set("n", "<M-o>", "<cmd>copen<CR>", { desc = "qfix open" })
 vim.opt.laststatus = 3
 
 -- Yank filepath of the current buffer
-vim.keymap.set({ "n", "v" }, "<leader>yp", "<cmd>let @* = expand(\"%\")<CR>", { desc = "[Y]ank [P]ath of file (relative to root dir)" })
+vim.keymap.set({ "n", "v" }, "<leader>yp", function()
+  local path = vim.fn.expand('%:p')
+  local root = vim.fn.systemlist('git rev-parse --show-toplevel')[1]
+  if root and path:find(root, 1, true) == 1 then
+    vim.fn.setreg('*', path:sub(#root + 2))
+  else
+    vim.fn.setreg('*', vim.fn.expand('%:.'))
+  end
+end, { desc = "[Y]ank [P]ath of file (relative to root dir)" })
 vim.keymap.set({ "n", "v" }, "<leader>yP", "<cmd>let @* = expand('%:p')<CR>", { desc = "[Y]ank [P]ath of file (absolute path)" })
 
 -- Add filetypes for Open API specs, since they aren't detected automatically:
