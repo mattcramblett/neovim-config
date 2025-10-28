@@ -1,4 +1,5 @@
 local servers = {
+  "rust_analyzer",
 	"gopls",
 	"kotlin_language_server",
 	"lua_ls",
@@ -45,6 +46,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     if client:supports_method('textDocument/completion') then
       vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = false })
+    end
+
+    if client:supports_method('textDocument/inlayHint') then
+      vim.lsp.inlay_hint.enable(true, { bufnr = ev.bufnr })
     end
 
     -- Below: sorbet compatibility with ruby-lsp
