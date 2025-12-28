@@ -26,7 +26,7 @@ vim.keymap.set("n", "M", vim.diagnostic.open_float, { desc = "Diagnostics - open
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "LSP Hover" })
 vim.keymap.set(
 	"n",
-	"N",
+	".",
 	function ()
 	  vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 	end,
