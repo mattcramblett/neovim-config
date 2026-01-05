@@ -1,5 +1,5 @@
 return {
   cmd = { "srb", "tc", "--lsp" },
-  root_markers = { ".git", "Gemfile" },
+  root_markers = { ".git" },
   filetypes = { "ruby" },
 }
