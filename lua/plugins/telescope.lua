@@ -32,8 +32,8 @@ return {
 					fzf = {
 						-- fuzzy = false, -- only exact matching
 						case_mode = "ignore_case", -- "smart_case", "ignore_case" or "respect_case"
-            override_generic_sorter = true, -- use fzf for non-file pickers
-            override_file_sorter    = true, -- use fzf for file pickers too
+						override_generic_sorter = true, -- use fzf for non-file pickers
+						override_file_sorter = true, -- use fzf for file pickers too
 					},
 				},
 				defaults = {
@@ -42,9 +42,9 @@ return {
 							["<C-y>"] = require("telescope.actions.layout").toggle_preview,
 						},
 					},
-          layout_config = {
-            horizontal = { preview_width = 0.5 },
-          },
+					layout_config = {
+						horizontal = { preview_width = 0.5 },
+					},
 				},
 				pickers = {
 					buffers = {
@@ -52,9 +52,9 @@ return {
 						show_all_buffers = true,
 						sort_lastused = true,
 						previewer = true,
-            sorter = require("telescope").extensions.fzf.native_fzf_sorter({
-              case_mode = "ignore_case",   -- or "smart_case"/"respect_case"
-            }),
+						sorter = require("telescope").extensions.fzf.native_fzf_sorter({
+							case_mode = "ignore_case", -- or "smart_case"/"respect_case"
+						}),
 						mappings = {
 							i = {
 								["<c-d>"] = "delete_buffer",
@@ -113,6 +113,11 @@ return {
 			vim.keymap.set("n", "go", function()
 				builtin.find_files({ default_text = vim.fn.expand("<cword>") })
 			end, { desc = "[G]o to [O]pen file (search files with word)" })
+
+			-- Ruby file navigation
+			local ruby = require("util.ruby")
+			vim.keymap.set("n", "<leader>fs", ruby.find_spec, { desc = "[F]ind [S]pec" })
+			vim.keymap.set("n", "<leader>fS", ruby.find_source, { desc = "[F]ind [S]ource" })
 		end,
 	},
 }
