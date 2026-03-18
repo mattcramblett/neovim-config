@@ -18,6 +18,23 @@ return {
 		output = { open_on_run = true },
 	},
 	config = function(_, opts)
+		-- Find the nearest directory containing a package.json by walking up from a file path.
+		-- Returns nil if none found before hitting the git root or filesystem root.
+		local function find_package_root(file)
+			local dir = vim.fn.fnamemodify(file, ":h")
+			local git_root = vim.fn.systemlist("git -C " .. vim.fn.shellescape(dir) .. " rev-parse --show-toplevel")[1]
+			while dir and dir ~= "/" do
+				if vim.fn.filereadable(dir .. "/package.json") == 1 then
+					return dir .. "/"
+				end
+				if dir == git_root then
+					break
+				end
+				dir = vim.fn.fnamemodify(dir, ":h")
+			end
+			return nil
+		end
+
 		opts.diagnostic = {
 			enabled = true,
 			severity = 1,
@@ -66,19 +83,30 @@ return {
 				-- end,
 			}),
 			require("neotest-jest")({
-				-- jestCommand = "jest --passWithNoTests",
+				jestCommand = "npx jest",
 				jestConfigFile = function(file)
-					if string.find(file, "/apps/") then
-						return string.match(file, "(.-/apps/[^/]+/)") .. "jest.config.js"
+					local root = find_package_root(file)
+					if root then
+						return root .. "jest.config.js"
 					end
-
 					return vim.fn.getcwd() .. "/jest.config.js"
 				end,
 				cwd = function(file)
-					if string.find(file, "/apps/") then
-						return string.match(file, "(.-/apps/[^/]+/)")
+					local root = find_package_root(file)
+					if root then
+						return root
 					end
 					return vim.fn.getcwd()
+				end,
+				-- Default is_test_file checks for an exact "jest" key in package.json
+				-- dependencies, which fails in yarn workspaces where jest is provided
+				-- by a shared package (e.g. @dev-tools/jest). Skip that check.
+				isTestFile = function(file_path)
+					if not file_path then
+						return false
+					end
+					local util = require("neotest-jest.util")
+					return util.defaultTestFileMatcher(file_path)
 				end,
 			}),
 			-- require("codymikol/neotest-kotlin"),
