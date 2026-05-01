@@ -3,7 +3,7 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 		opts = {
-			ensure_installed = { "lua", "javascript", "ruby", "typescript", "kotlin", "java", "rust", "zig" },
+			ensure_installed = { "javascript", "ruby", "typescript", "kotlin", "java", "rust", "zig" },
 			auto_install = true,
 		},
 	},
