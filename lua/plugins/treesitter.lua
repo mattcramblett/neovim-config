@@ -2,16 +2,10 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
-		config = function()
-			local config = require("nvim-treesitter.configs")
-			config.setup({
-				ensure_installed = { "lua", "javascript", "ruby", "typescript", "kotlin", "java", "rust", "zig" },
-				auto_install = true,
-				highlight = { enable = true },
-				indent = { enable = true },
-        additional_vim_regex_highlighting = { "ruby" },
-			})
-		end,
+		opts = {
+			ensure_installed = { "lua", "javascript", "ruby", "typescript", "kotlin", "java", "rust", "zig" },
+			auto_install = true,
+		},
 	},
 	{
 		"RRethy/nvim-treesitter-endwise",
