@@ -17,6 +17,14 @@ return {
       vim.keymap.set("n", "<leader>gr", ":Gitsigns reset_hunk<CR>", { desc = "Git reset hunk" })
 		end,
 	},
+  {
+    "sindrets/diffview.nvim",
+    config = function ()
+      require("diffview").setup({
+        vim.keymap.set("n", "<leader>gd", ":DiffviewOpen<CR>", { desc = "Open diffview" })
+      })
+    end
+  },
 	{
 		"ruifm/gitlinker.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
