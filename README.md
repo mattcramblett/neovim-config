@@ -8,6 +8,7 @@ git clone https://github.com/mattcramblett/neovim-config.git ~/.config/nvim
 
 - Lazy Git `brew install lazygit`
 - Rip Grep `brew install ripgrep`
+- Treesitter cli `brew install tree-sitter-cli`
 - Ruby stuff:
   - Ruby LSP `gem install ruby-lsp`
   - Watchman `brew install watchman` (used by the Sorbet LSP, which ruby-lsp uses in Sorbet projects)
