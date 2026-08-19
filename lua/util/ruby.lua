@@ -9,13 +9,13 @@ function M.find_spec()
 	elseif #results == 1 then
 		vim.cmd.edit(results[1])
 	else
-		vim.fn.setloclist(0, {}, "r", {
+		vim.fn.setqflist({}, "r", {
 			title = "Specs for " .. basename,
 			items = vim.tbl_map(function(f)
 				return { filename = f }
 			end, results),
 		})
-		vim.cmd.lopen()
+		vim.cmd.copen()
 	end
 end
 
@@ -28,13 +28,13 @@ function M.find_source()
 	elseif #results == 1 then
 		vim.cmd.edit(results[1])
 	else
-		vim.fn.setloclist(0, {}, "r", {
+		vim.fn.setqflist({}, "r", {
 			title = "Source: " .. source_name,
 			items = vim.tbl_map(function(f)
 				return { filename = f }
 			end, results),
 		})
-		vim.cmd.lopen()
+		vim.cmd.copen()
 	end
 end
 
