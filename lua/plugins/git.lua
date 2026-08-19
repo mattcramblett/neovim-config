@@ -19,11 +19,30 @@ return {
 	},
   {
     "sindrets/diffview.nvim",
-    config = function ()
-      require("diffview").setup({
-        vim.keymap.set("n", "<leader>gd", ":DiffviewOpen<CR>", { desc = "Open diffview" })
-      })
-    end
+    keys = {
+      { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "Open diffview" },
+    },
+    opts = {
+      enhanced_diff_hl = true, -- distinguish "deleted" from "changed-to" regions
+      view = {
+        default = { layout = "diff2_horizontal", winbar_info = true },
+        merge_tool = {
+          layout = "diff3_mixed", -- OURS | THEIRS on top, merge result below
+          disable_diagnostics = true,
+          winbar_info = true,
+        },
+        file_history = { layout = "diff2_horizontal", winbar_info = true },
+      },
+      hooks = {
+        diff_buf_read = function(bufnr)
+          vim.opt_local.wrap = false
+          vim.opt_local.list = false
+          vim.opt_local.cursorline = true
+          vim.opt_local.number = true
+          vim.opt_local.relativenumber = false
+        end,
+      },
+    },
   },
 	{
 		"ruifm/gitlinker.nvim",

@@ -13,6 +13,10 @@ vim.opt.autoindent = true             -- Indent: Copy indent from current line w
 vim.opt.clipboard = "unnamedplus"     -- Sync clipboard between OS and Neovim
 vim.opt.colorcolumn = "120"           -- Show vertical bar to indicate 120 chars
 
+-- Diff
+vim.opt.diffopt:append("algorithm:histogram") -- better hunk matching than the default myers
+vim.opt.fillchars:append({ diff = "╱" })      -- diagonal hatching instead of a wall of `-`
+
 -- Search
 vim.opt.ignorecase = true             -- Ignore case
 vim.opt.smartcase = true              -- unless uppercase chars are given
