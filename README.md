@@ -18,6 +18,26 @@ git clone https://github.com/mattcramblett/neovim-config.git ~/.config/nvim
   - Follow instructions in repo:
   - `brew install git-delta`
   - and add the suggested content to your `~/.gitconfig`
+    ```gitconfig
+    [core]
+        pager = delta
+    [interactive]
+        diffFilter = delta --color-only
+    [delta]
+        navigate = true
+        dark = true
+      merge-conflict-begin-symbol = ▼
+      merge-conflict-end-symbol = ▲
+      merge-conflict-ours-diff-header-style = yellow bold
+      merge-conflict-theirs-diff-header-style = yellow bold
+    [merge]
+      tool = nvim_diffview
+        conflictStyle = zdiff3
+    [mergetool "nvim_diffview"]
+        cmd = nvim -c "DiffviewOpen"
+        trustExitCode = false
+    ```
+
   - Add the following yml to your lazygit configuration at `~/Library/Application\ Support/lazygit/config.yml`:
     (or just press `e` in the Status (1) panel to edit the config file of lazygit)
     [see lazygit docs](https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_Pagers.md#delta)
@@ -26,6 +46,17 @@ git clone https://github.com/mattcramblett/neovim-config.git ~/.config/nvim
       paging:
         colorArg: always
         pager: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
+    customCommands:
+      - key: 'D'
+        context: 'files'
+        description: 'View conflict diff in delta'
+        command: 'git diff -- {{.SelectedPath}} | delta --dark --line-numbers --paging=always'
+        output: terminal
+      - key: '<c-p>'
+        context: 'global'
+        command: 'git pull --rebase'
+        description: 'Pull with rebase'
+        loadingText: 'Pulling with rebase...'
     ```
 - Terminal background color to match Neovim color scheme: `#020a1a`
 
